@@ -50,6 +50,8 @@ async function handler(req, res) {
         }
     }
 
+    data = JSON.stringify(data)
+
     // fetch(url, {
     //     method: 'PATCH',
     //     headers: {
