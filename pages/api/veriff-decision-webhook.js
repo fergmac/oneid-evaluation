@@ -21,10 +21,10 @@ function runMiddleware(req, res, fn) {
 
 async function handler(req, res) {
     await runMiddleware(req, res, cors);
-
-    console.log("Veriff Decision Webhook: ", req)
     // const url = process.env.ONEID_API_ENDPOINT
     // const apiKey = process.env.API_KEY
+
+    console.log("Veriff Decision Webhook: ", req)
 
     // fetch(url, {
     //     method: 'PATCH',
@@ -39,10 +39,6 @@ async function handler(req, res) {
 
 
     res.status(200).json({ msg: 'Veriff Decision Webhook Data Submitted' })
-
-    // TODO:
-    // 1. Parse provider responses
-    // 2. forward identity verification data to aws api gateway endpoint
 }
 
 export default handler;

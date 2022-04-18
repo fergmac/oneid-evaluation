@@ -18,10 +18,18 @@ function runMiddleware(req, res, fn) {
 
 async function handler(req, res) {
     await runMiddleware(req, res, cors)
-
-    console.log("submit user data serverless function", req.body)
     // const url = process.env.USER_API_ENDPOINT
     // const apiKey = process.env.API_KEY
+
+    console.log("Submit User Data: ", req.body)
+
+    const data = {
+        "user_id": req.body.userId,
+        "first_name": req.body.firstName,
+        "middle_name": req.body.middleName,
+        "last_name": req.body.lastName,
+        "date_of_birth": req.body.dateOfBirth
+    }
 
     // fetch(url, {
     //     method: 'POST',
@@ -29,14 +37,13 @@ async function handler(req, res) {
     //         "Content-Type": "application/json",
     //         "x-api-key": apiKey
     //     },
-    //     body: req.body
+    //     body: data
     // }).then((res) => {
     //     console.log("Response: ", res)
     // }).catch((error) => console.log("OneID Provider Error: ", error));
 
-    console.log("User Data: ", req.body)
     
-    res.status(200).json({ msg: 'User Data Submitted' })
+    res.status(200).json({ msg: 'User Data Submitted: ', data})
 }
 
 export default handler;
