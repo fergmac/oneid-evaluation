@@ -24,6 +24,7 @@ async function handler(req, res) {
     await runMiddleware(req, res, cors)
 
     console.log("Veriff Events Webhook: ", req)
+    console.log("timestamp", today.toUTCString().split(" ")['4'])
     // const url = process.env.ONEID_API_ENDPOINT
     // const apiKey = process.env.API_KEY
 
