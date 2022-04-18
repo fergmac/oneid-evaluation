@@ -23,13 +23,15 @@ async function handler(req, res) {
 
     console.log("Submit User Data: ", req.body)
 
-    const data = {
+    let data = {
         "user_id": req.body.userId,
         "first_name": req.body.firstName,
         "middle_name": req.body.middleName,
         "last_name": req.body.lastName,
         "date_of_birth": req.body.dateOfBirth
     }
+
+    data = JSON.stringify(data)
 
     fetch(url, {
         method: 'POST',
