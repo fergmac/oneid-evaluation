@@ -1,13 +1,21 @@
 import Script from 'next/script'
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import UserForm from '../components/userForm';
+import IdVerification from './id-verification';
+
 
 function HomePage() {
+    const router = useRouter();
 
+    useEffect(() => {
+        if (localStorage.getItem('userData') !== null) {
+            router.push('/id-verification');
+        }
+    });
 
     return (
         <>
-            <Script src="https://cdn.veriff.me/sdk/js/1.1/veriff.min.js" strategy="beforeInteractive"/>
-            <Script src="https://cdn.veriff.me/incontext/js/v1/veriff.js" strategy="beforeInteractive" />
             <UserForm />
         </>
     );

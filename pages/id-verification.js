@@ -2,20 +2,26 @@ import { useEffect } from "react";
 import { useRouter } from 'next/router';
 import VeriffProvider from '../components/veriff.js';
 import OneIDScripts from './one-id-scripts';
+import Script from 'next/script'
 
 function OneIDEvaluation() {
     const router = useRouter();
 
     useEffect(() => {
         const userData = localStorage.getItem("userData");
-        fetch('api/submit-user-data', {
-            method: 'POST',
-            credentials: 'same-origin',
-            body: JSON.stringify(userData)
-        })
-            .then((res) => {
-                console.log("response post fetch", res)
-            });
+
+        if (localStorage.getItem("userDataSumbmitted") === false) {
+            fetch('api/submit-user-data', {
+                method: 'POST',
+                credentials: 'same-origin',
+                body: JSON.stringify(userData)
+            })
+                .then((res) => {
+                    console.log("response post fetch", res)
+                    localStorage.setItem("userDataSumbmitted", true);
+                });
+        }
+
     });
 
     return (
