@@ -17,11 +17,11 @@ function runMiddleware(req, res, fn) {
 }
 
 async function handler(req, res) {
+    await runMiddleware(req, res, cors)
+
     console.log("submit user data serverless function", req.body)
     // const url = process.env.USER_API_ENDPOINT
     // const apiKey = process.env.API_KEY
-
-    await runMiddleware(req, res, cors)
 
     // fetch(url, {
     //     method: 'POST',

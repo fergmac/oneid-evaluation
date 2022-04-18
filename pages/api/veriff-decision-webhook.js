@@ -1,7 +1,7 @@
 import Cors from 'cors'
 
 const cors = Cors({
-    methods: ['POST', 'HEAD'],
+    methods: ['POST', 'PATCH', 'HEAD'],
     headers: {
         "Access-Control-Allow-Origin": "*",
     }
@@ -21,8 +21,24 @@ function runMiddleware(req, res, fn) {
 
 async function handler(req, res) {
     await runMiddleware(req, res, cors);
-    console.log("Identity Verification: ", req.body)
-    res.status(200).json({ msg: 'Identity Verification Data Submitted' })
+
+    console.log("Veriff Decision Webhook: ", req)
+    // const url = process.env.ONEID_API_ENDPOINT
+    // const apiKey = process.env.API_KEY
+
+    // fetch(url, {
+    //     method: 'PATCH',
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //         "x-api-key": apiKey
+    //     },
+    //     body: req.body
+    // }).then((res) => {
+    //     console.log("Response: ", res)
+    // }).catch((error) => console.log("OneID Provider Error: ", error));
+
+
+    res.status(200).json({ msg: 'Veriff Decision Webhook Data Submitted' })
 
     // TODO:
     // 1. Parse provider responses
