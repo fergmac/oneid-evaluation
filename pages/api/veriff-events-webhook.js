@@ -22,9 +22,9 @@ function runMiddleware(req, res, fn) {
 // TODO: should check webhook comes from Veriff: https://developers.veriff.com/#address-media-mediaid
 async function handler(req, res) {
     await runMiddleware(req, res, cors)
-
+    const timeStamp = new Date()
     console.log("Veriff Events Webhook: ", req)
-    console.log("timestamp", today.toUTCString().split(" ")['4'])
+    console.log("timestamp", timeStamp.toUTCString().split(" ")['4'])
     // const url = process.env.ONEID_API_ENDPOINT
     // const apiKey = process.env.API_KEY
 
