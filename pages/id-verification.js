@@ -10,7 +10,7 @@ function OneIDEvaluation() {
     useEffect(() => {
         const userData = localStorage.getItem("userData");
 
-        if (localStorage.getItem("userDataSumbmitted") === false) {
+        if (localStorage.getItem("userDataSubmitted") === false) {
             fetch('api/submit-user-data', {
                 method: 'POST',
                 credentials: 'same-origin',
