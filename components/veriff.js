@@ -16,7 +16,7 @@ function VeriffProvider({}) {
                 givenName: ' ',
                 lastName: ' '
             },
-            vendorData: ' '
+            vendorData: JSON.parse(localStorage.getItem("userData")).userId
         });
         veriff.mount();
     });
