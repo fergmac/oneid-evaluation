@@ -18,7 +18,7 @@ function OneIDEvaluation() {
             })
                 .then((res) => {
                     console.log("response post fetch", res)
-                    localStorage.setItem("userDataSumbmitted", true);
+                    localStorage.setItem("userDataSubmitted", true);
                 });
         }
 
