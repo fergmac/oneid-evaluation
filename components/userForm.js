@@ -14,7 +14,7 @@ function UserForm() {
                 "dateOfBirth": formData.get('dateOfBirth')
             }
             localStorage.setItem("userData", JSON.stringify(userData))
-            localStorage.setItem("userDataSubmitted", false);
+            localStorage.setItem("userDataSubmitted", JSON.stringify(false));
         }
     }
 
