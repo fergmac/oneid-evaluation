@@ -18,34 +18,29 @@ function runMiddleware(req, res, fn) {
 
 async function handler(req, res) {
     await runMiddleware(req, res, cors)
-    const url = process.env.USER_API_ENDPOINT
-    const apiKey = process.env.API_KEY
-
     console.log("Submit User Data: ", req.body)
 
-    let data = {
-        "user_id": req.body.userId,
-        "first_name": req.body.firstName,
-        "middle_name": req.body.middleName,
-        "last_name": req.body.lastName,
-        "date_of_birth": req.body.dateOfBirth
-    }
-
-    data = JSON.stringify(data)
-
-    fetch(url, {
+    fetch(process.env.USER_API_ENDPOINT, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
-            "x-api-key": apiKey
+            "x-api-key": process.env.API_KEY
         },
-        body: data
+        body: JSON.stringify(
+            {
+                "user_id": req.body.userId,
+                "first_name": req.body.firstName,
+                "middle_name": req.body.middleName,
+                "last_name": req.body.lastName,
+                "date_of_birth": req.body.dateOfBirth
+            }
+        )
     }).then((res) => {
         console.log("Response: ", res)
     }).catch((error) => console.log("OneID Provider Error: ", error));
 
     
-    res.status(200).json({ msg: 'User Data Submitted: ', data: data})
+    res.status(200).json({ msg: 'User Data Submitted.' });
 }
 
 export default handler;
