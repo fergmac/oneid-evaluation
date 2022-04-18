@@ -22,8 +22,6 @@ function runMiddleware(req, res, fn) {
 // TODO: should check webhook comes from Veriff: https://developers.veriff.com/#address-media-mediaid
 async function handler(req, res) {
     await runMiddleware(req, res, cors);
-    // const url = process.env.ONEID_API_ENDPOINT
-    // const apiKey = process.env.API_KEY
 
     let timeStamp = new Date();
     timeStamp = timeStamp.toUTCString().split(" ")['4'];
@@ -50,20 +48,18 @@ async function handler(req, res) {
         }
     }
 
-    data = JSON.stringify(data)
+    fetch("https://dcwsy6m8yg.execute-api.ca-central-1.amazonaws.com/default/one_id_testing_responses", {
+        method: 'PATCH',
+        headers: {
+            "Content-Type": "application/json",
+            "x-api-key": process.env.API_KEY
+        },
+        body: data
+    }).then((res) => {
+        console.log("Veriff Events Webhook: ", res)
+    }).catch((error) => console.log("OneID Provider Error: ", error));
 
-    // fetch(url, {
-    //     method: 'PATCH',
-    //     headers: {
-    //         "Content-Type": "application/json",
-    //         "x-api-key": apiKey
-    //     },
-    //     body: data
-    // }).then((res) => {
-    //     console.log("Veriff Events Webhook: ", res)
-    // }).catch((error) => console.log("OneID Provider Error: ", error));
-
-    res.status(200).json({ msg: 'Veriff Events Webhook Data Submitted: ', data: data})
+    res.status(200).json({ msg: 'Veriff Events Webhook Data Submitted: ', data: JSON.stringify(data)})
 }
 
 export default handler;
