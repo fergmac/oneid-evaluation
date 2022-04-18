@@ -61,7 +61,7 @@ async function handler(req, res) {
     //     console.log("Veriff Events Webhook: ", res)
     // }).catch((error) => console.log("OneID Provider Error: ", error));
 
-    res.status(200).json({ msg: 'Veriff Events Webhook Data Submitted: ', data})
+    res.status(200).json({ msg: 'Veriff Events Webhook Data Submitted: ', data: data})
 }
 
 export default handler;
