@@ -24,7 +24,7 @@ export default function handler(req, res) {
     // await runMiddleware(req, res, cors)
 
     console.log("Veriff Events Webhook: ", req.body)
-    // res.status(200).json({ msg: 'Identity Verification Data Submitted' })
+    res.status(200).json({ msg: 'Identity Verification Data Submitted' })
 
     // TODO:
     // 1. Parse provider responses
