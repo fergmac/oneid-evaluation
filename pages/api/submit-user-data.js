@@ -20,7 +20,7 @@ async function handler(req, res) {
     await runMiddleware(req, res, cors)
     console.log("Submit User Data: ", req.body)
 
-    fetch(process.env.USER_API_ENDPOINT, {
+    fetch("https://2un07fmcmd.execute-api.ca-central-1.amazonaws.com/default/one_id_testing_user", {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
@@ -40,7 +40,7 @@ async function handler(req, res) {
     }).catch((error) => console.log("OneID Provider Error: ", error));
 
     
-    res.status(200).json({ msg: 'User Data Submitted.' });
+    res.status(200).json({ msg: 'User Data Submitted.'})
 }
 
 export default handler;
