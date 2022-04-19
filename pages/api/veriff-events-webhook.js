@@ -2,7 +2,7 @@
 async function handler(req, res) {
     console.log("Event Webhook - Provider Data", req.body);
 
-    const provider_data = JSON.parse(req.body);
+    const provider_data = req.body
     let data;
     // let timeStamp = new Date();
     // timeStamp = timeStamp.toUTCString().split(" ")['4'];
