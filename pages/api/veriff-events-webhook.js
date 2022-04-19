@@ -1,9 +1,11 @@
 // TODO: should check webhook comes from Veriff: https://developers.veriff.com/#address-media-mediaid
 async function handler(req, res) {
+    console.log("Event Webhook - Provider Data", req.body);
+
     const provider_data = JSON.parse(req.body);
     let data;
-    let timeStamp = new Date();
-    timeStamp = timeStamp.toUTCString().split(" ")['4'];
+    // let timeStamp = new Date();
+    // timeStamp = timeStamp.toUTCString().split(" ")['4'];
 
     console.log("Veriff Events Webhook: ", req);
     console.log("timestamp", timeStamp);
@@ -12,7 +14,7 @@ async function handler(req, res) {
         data = {
             "user_id": provider_data.vendorData,
             "session_id": provider_data.id,
-            "start_time": timeStamp
+            "start_time": "test"
         }
     }
 
@@ -20,7 +22,7 @@ async function handler(req, res) {
         data = {
             "user_id": provider_data.vendorData,
             "session_id": provider_data.id,
-            "stop_time": timeStamp
+            "stop_time": "test"
         }
     }
     
