@@ -7,9 +7,6 @@ async function handler(req, res) {
     // let timeStamp = new Date();
     // timeStamp = timeStamp.toUTCString().split(" ")['4'];
 
-    console.log("Veriff Events Webhook: ", req);
-    console.log("timestamp", timeStamp);
-
     if (provider_data.action === 'started') {
         data = {
             "user_id": provider_data.vendorData,
