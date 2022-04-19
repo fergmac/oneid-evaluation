@@ -17,13 +17,12 @@ function OneIDEvaluation() {
         if (JSON.parse(localStorage.getItem("userDataSubmitted")) === false) {
             fetch('api/submit-user-data', {
                 method: 'POST',
-                credentials: 'same-origin',
-                body: JSON.stringify(userData)
+                body: userData
             })
                 .then((res) => {
                     console.log("response post fetch", res)
                     localStorage.setItem("userDataSubmitted", JSON.stringify(true));
-                });
+                }).catch((err) => console.log("Error: ", err));
         }
 
     });

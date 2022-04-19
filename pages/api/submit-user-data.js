@@ -1,39 +1,20 @@
-import Cors from 'cors'
-
-const cors = Cors({
-    methods: ['POST', 'HEAD'],
-})
-
-function runMiddleware(req, res, fn) {
-    return new Promise((resolve, reject) => {
-        fn(req, res, (result) => {
-        if (result instanceof Error) {
-            return reject(result)
-        }
-
-        return resolve(result)
-        })
-    })
-}
-
-async function handler(req, res) {
-    await runMiddleware(req, res, cors)
-    console.log("Submit User Data: ", req.body)
+export default function handler(req, res) {
+    const userData = JSON.parse(req.body);
 
     fetch("https://2un07fmcmd.execute-api.ca-central-1.amazonaws.com/default/one_id_testing_user", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
                 "x-api-key": process.env.API_KEY,
-                "Host": "https://2un07fmcmd.execute-api.ca-central-1.amazonaws.com"
+
             },
             body: JSON.stringify(
                 {
-                    "user_id": req.body.userId,
-                    "first_name": req.body.firstName,
-                    "middle_name": req.body.middleName,
-                    "last_name": req.body.lastName,
-                    "date_of_birth": req.body.dateOfBirth
+                    "user_id": userData.userId,
+                    "first_name": userData.firstName,
+                    "middle_name": userData.middleName,
+                    "last_name": userData.lastName,
+                    "date_of_birth": userData.dateOfBirth
                 }
             )
     }).then((response) => {
@@ -44,5 +25,3 @@ async function handler(req, res) {
         res.status(error.status).json({ msg: "User Data Submit Error: ", err: error });
     })
 }
-
-export default handler;
