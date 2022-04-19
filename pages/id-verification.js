@@ -10,6 +10,10 @@ function OneIDEvaluation() {
     useEffect(() => {
         const userData = localStorage.getItem("userData");
 
+        if (!userData) {
+            router.push("/");
+        }
+
         if (JSON.parse(localStorage.getItem("userDataSubmitted")) === false) {
             fetch('api/submit-user-data', {
                 method: 'POST',
