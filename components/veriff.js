@@ -20,7 +20,7 @@ function VeriffProvider({}) {
         });
         veriff.mount();
     });
-        
+
     return (
         <div className="section">
             <Image className="logo" width="100" height="50" src="/logo_veriff.svg" alt="OneID provider logo" />

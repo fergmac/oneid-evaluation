@@ -26,7 +26,7 @@ function Vouched() {
     //     vouchedOpen = !vouchedOpen
     //     document.getElementById("vouched-root").style.visibility = vouchedOpen ? "visible" : "hidden";
     // }
-        
+
     return (
         <div className="section">
             <Image className="logo" width="300" height="200" src="/logo_vouched.png" alt="OneID provider logo" />

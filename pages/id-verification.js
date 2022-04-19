@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useRouter } from 'next/router';
 import VeriffProvider from '../components/veriff.js';
+import YotiProvider from '../components/yoti.js';
 import OneIDScripts from './one-id-scripts';
-import Script from 'next/script'
 
 function OneIDEvaluation() {
     const router = useRouter();
@@ -29,10 +29,12 @@ function OneIDEvaluation() {
     });
 
     return (
-        <div className="section-container">
-            {/* <OneIDScripts /> */}
-            <h1>OneID Provider Evaluation</h1>
+        <div className="content">
+            <OneIDScripts />
+            <h3>OneID Provider Evaluation</h3>
             <VeriffProvider />
+            <YotiProvider />
+            {/* <YotiButton/> */}
         </div>);
 }
 

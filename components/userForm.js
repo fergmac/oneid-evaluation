@@ -20,7 +20,7 @@ function UserForm() {
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        const formData = new FormData(myForm);
+        const formData = new FormData(regForm);
 
         saveUserData(formData);
 
@@ -29,8 +29,8 @@ function UserForm() {
 
     return (
         <>
-            <h2>Please enter the following information as it appears on your ID.</h2>
-            <form action="" method="" id="myForm" name="myForm" onSubmit={handleFormSubmit}>
+            <h4>Please enter the following information as it appears on your ID.</h4>
+            <form action="" method="" id="regForm" name="regForm" onSubmit={handleFormSubmit}>
                 <div>
                     <label htmlFor="firstName">First Name:</label>
                     <input type="text" name="firstName" required />

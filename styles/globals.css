@@ -1,75 +1,88 @@
 html {
-font-family: Verdana;
-background-color: #fcfcfc;
+  font-family: Verdana;
+  background-color: #fcfcfc;
 }
+
 html body {
-height: unset;
+  height: unset;
 }
+
 header {
-text-align: center;
+  text-align: center;
 }
+
 h1 {
-font-size: 3rem;
-font-weight: 800;
+  font-size: 3rem;
+  font-weight: 800;
 }
+
 .survey-link {
-font-size: 1rem;
-text-decoration: none;
-color: green;
-font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  color: green;
+  font-weight: 600;
 }
+
 .section-container {
-max-width: 500px;
-margin: auto;
-display: flex;
-flex-direction: column;
-/* align-items: stretch; */
-justify-content: center;
-padding-bottom: 10vh;
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  /* align-items: stretch; */
+  justify-content: center;
+  padding-bottom: 10vh;
 }
+
 .section {
-display: flex;
-flex-direction: column;
-justify-content: center;
-padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 2rem;
 }
+
 .section:not(:last-child) {
-border-bottom: 1px lightgray solid;
+  border-bottom: 1px lightgray solid;
 }
+
 .logo {
-display: flex;
-align-self: center;
-/* width: 67%; */
-margin: auto;
-margin-bottom: 1.5rem;
+  display: flex;
+  align-self: center;
+  /* width: 67%; */
+  margin: auto;
+  margin-bottom: 1.5rem;
 }
+
 .full-width {
-width: 100vw;
-position: relative;
-left: 50%;
-right: 50%;
-margin-left: -50vw;
-margin-right: -50vw;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
+
 .veriff-description {
-display: none;
+  display: none;
 }
+
 mati-button {
-display: block;
-margin: auto;
+  display: block;
+  margin: auto;
 }
+
 button {
-display: block;
-width: 100%;
-height: 3rem;
-border: none;
-border-radius: 0.3rem;
-color: white;
-font-size: 1rem;
-font-weight: 600;
-cursor: pointer;
-transition: background-color  200ms;
+  display: block;
+  width: 100%;
+  height: 3rem;
+  border: none;
+  border-radius: 0.3rem;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 200ms;
 }
+
 /* button#authentic-button,
 button#authentic-button:active {
 background-color: #15639b;
@@ -80,12 +93,80 @@ background-color: #1c73b1;
 } */
 button#vouched-button,
 button#vouched-button:active {
-background-color: #3a2ca8;
+  background-color: #3a2ca8;
 }
+
 button#vouched-button:hover,
 button#vouched-button:focus {
-background-color: #5043b5;
+  background-color: #5043b5;
 }
+
 #vouched-root {
-height: 60vh;
+  height: 60vh;
+}
+
+/* The side navigation menu */
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #ebe1e198;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+/* Sidebar links */
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+
+/* Active/current link */
+.sidebar a.active {
+  background-color: #d6a564;
+  color: white;
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+/* Page content.
+The value of the margin-left property should match the value of the sidebar's width property */
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+/* On screens that are less than 700px wide,
+make the sidebar into a topbar */
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .sidebar a {
+    float: left;
+  }
+
+  div.content {
+    margin-left: 0;
+  }
+}
+
+/* On screens that are less than 400px,
+display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
 }
