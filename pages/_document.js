@@ -1,5 +1,5 @@
 import Document, { Head, Html, Main, NextScript } from 'next/document';
-
+import OneIDScripts from './one-id-scripts';
 class MyDocument extends Document {
     render() {
         return <Html lang="en" >
@@ -9,6 +9,7 @@ class MyDocument extends Document {
             <body>
                 <Main></Main>
                 <NextScript />
+                <OneIDScripts />
             </body>
         </Html>
     }

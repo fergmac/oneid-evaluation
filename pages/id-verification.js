@@ -30,11 +30,9 @@ function OneIDEvaluation() {
 
     return (
         <div className="content">
-            <OneIDScripts />
             <h3>OneID Provider Evaluation</h3>
             <VeriffProvider />
             <YotiProvider />
-            {/* <YotiButton/> */}
         </div>);
 }
 
