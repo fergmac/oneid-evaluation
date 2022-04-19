@@ -20,8 +20,7 @@ async function handler(req, res) {
     await runMiddleware(req, res, cors)
     console.log("Submit User Data: ", req.body)
 
-    try {
-        const response = await fetch("https://2un07fmcmd.execute-api.ca-central-1.amazonaws.com/default/one_id_testing_user", {
+    fetch("https://2un07fmcmd.execute-api.ca-central-1.amazonaws.com/default/one_id_testing_user", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -37,13 +36,13 @@ async function handler(req, res) {
                     "date_of_birth": req.body.dateOfBirth
                 }
             )
-        })
+    }).then((response) => {
         console.log("Fetch to User Data Endpoint - Response: ", response.json())
-        res.status(200).json({ msg: 'User Data Submitted.', response: response.json() });
-    } catch (error) {
+        res.status(200).json({ msg: 'User Data Submitted.', res: response.json() }); 
+    }).catch((error) => {
         console.log("User Data Submit Error: ", error);
-        res.status(error.status).json({ msg: "User Data Submit Error: ", error: error });
-    }
+        res.status(error.status).json({ msg: "User Data Submit Error: ", err: error });
+    })
 }
 
 export default handler;
