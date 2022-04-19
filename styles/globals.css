@@ -110,7 +110,7 @@ button#vouched-button:focus {
   margin: 0;
   padding: 0;
   width: 200px;
-  background-color: #ebe1e198;
+  background: linear-gradient(to right, #e1eec3, #f05053);
   position: fixed;
   height: 100%;
   overflow: auto;
@@ -135,6 +135,7 @@ button#vouched-button:focus {
   background-color: #555;
   color: white;
 }
+
 
 /* Page content.
 The value of the margin-left property should match the value of the sidebar's width property */
