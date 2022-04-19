@@ -47,19 +47,23 @@ async function handler(req, res) {
             "stop_time": timeStamp
         }
     }
-
-    fetch("https://dcwsy6m8yg.execute-api.ca-central-1.amazonaws.com/default/one_id_testing_responses", {
-        method: 'PATCH',
-        headers: {
-            "Content-Type": "application/json",
-            "x-api-key": process.env.API_KEY
-        },
-        body: data
-    }).then((res) => {
-        console.log("Veriff Events Webhook: ", res)
-    }).catch((error) => console.log("OneID Provider Error: ", error));
-
-    res.status(200).json({ msg: 'Veriff Events Webhook Data Submitted: ', data: JSON.stringify(data)})
+    
+    try {
+        const response = await fetch("https://dcwsy6m8yg.execute-api.ca-central-1.amazonaws.com/default/one_id_testing_responses", {
+            method: 'PATCH',
+            headers: {
+                "Content-Type": "application/json",
+                "x-api-key": process.env.API_KEY,
+                "Host": "https://dcwsy6m8yg.execute-api.ca-central-1.amazonaws.com"
+            },
+            body: JSON.stringify(data)
+        });
+        console.log("Fetch to OneID Endpoint - Response: ", response.json());
+        res.status(200).json({ msg: 'Veriff Events Webhook Data Submitted: ', response: response.json() });
+    } catch (error) {
+        console.log("Veriff Event Data Submit Error: ", error);
+        res.status(error.status).json({ msg: "Veriff Event Data Submit Error: ", error: error });
+    }
 }
 
 export default handler;
