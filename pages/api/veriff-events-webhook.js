@@ -1,6 +1,7 @@
 // TODO: should check webhook comes from Veriff: https://developers.veriff.com/#address-media-mediaid
 async function handler(req, res) {
-    console.log("Event Webhook - Provider Data", req.body);
+    console.log("Event Webhook - Provider Data: ", req.body);
+    console.log("Event Type: ", req.body.action);
 
     const provider_data = req.body
     let data;
@@ -22,21 +23,21 @@ async function handler(req, res) {
             "stop_time": "test"
         }
     }
-    
-    fetch("https://dcwsy6m8yg.execute-api.ca-central-1.amazonaws.com/default/one_id_testing_responses", {
-        method: 'PATCH',
-        headers: {
-            "Content-Type": "application/json",
-            "x-api-key": process.env.API_KEY,
-        },
-        body: JSON.stringify(data)
-    }).then((response) => {
+    try {
+        const response = fetch("https://dcwsy6m8yg.execute-api.ca-central-1.amazonaws.com/default/one_id_testing_responses", {
+            method: 'PATCH',
+            headers: {
+                "Content-Type": "application/json",
+                "x-api-key": process.env.API_KEY,
+            },
+            body: JSON.stringify(data)
+        });
         console.log("Fetch to OneID Endpoint - Response: ", response.json());
-        res.status(200).json({ msg: 'Veriff Events Webhook Data Submitted: ', response: response.json() });
-    }).catch(() => {
+        res.status(200).json({ msg: 'Veriff Events Webhook Data Submitted: ', res: response.json() });
+    } catch (error) {
         console.log("Veriff Event Data Submit Error: ", error);
-        res.status(error.status).json({ msg: "Veriff Event Data Submit Error: ", error: error });
-    });
+        res.status(error.status).json({ msg: "Veriff Event Data Submit Error: ", err: error });
+    }
 }
 
 export default handler;
