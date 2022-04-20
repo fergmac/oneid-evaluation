@@ -5,8 +5,9 @@ async function handler(req, res) {
         "session_id": providerResponse.verification.id,
         "response": providerResponse,
         "provider": "veriff",
-        "start_time": "",
-        "stop_time": ""
+        "session_start_time": "",
+        "session_end_time": "",
+        "session_response_time": ""
     }
 
     console.log("Data: ", data)
