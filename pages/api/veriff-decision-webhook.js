@@ -16,7 +16,7 @@ async function handler(req, res) {
                 "Content-Type": "application/json",
                 "x-api-key": process.env.API_KEY,
             },
-            body: data
+            body: JSON.stringify(data)
         });
         res.status(response.status).json({msg: "Decision Webhook Success"});
     } catch (error) {
