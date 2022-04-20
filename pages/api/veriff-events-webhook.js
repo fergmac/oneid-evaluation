@@ -24,7 +24,7 @@ async function handler(req, res) {
         }
     }
     try {
-        const response = fetch("https://dcwsy6m8yg.execute-api.ca-central-1.amazonaws.com/default/one_id_testing_responses", {
+        const response = await fetch("https://dcwsy6m8yg.execute-api.ca-central-1.amazonaws.com/default/one_id_testing_responses", {
             method: 'PATCH',
             headers: {
                 "Content-Type": "application/json",
@@ -32,11 +32,12 @@ async function handler(req, res) {
             },
             body: JSON.stringify(data)
         });
-        console.log("Response: ", response);
-        res.status(200);
+        const data = await response.json();
+        console.log("Response: ", data);
+        res.status(200).json({msg: "Event Webhook Success"});
     } catch (error) {
         console.log("Error: ", error);
-        res.status(400)
+        res.status(400).json({msn: "Event Webhook Error"})
     }
 }
 
