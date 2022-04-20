@@ -3,14 +3,14 @@ async function handler(req, res) {
     console.log("Event Webhook - Provider Data: ", req.body);
     console.log("Event Type: ", req.body.action);
 
-    const provider_data = req.body
+    const providerResponse = req.body
     let data;
     let httpMethod;
 
-    if (provider_data.action === 'started') {
+    if (providerResponse.action === 'started') {
         data = {
-            "user_id": provider_data.vendorData,
-            "session_id": provider_data.id,
+            "user_id": providerResponse.vendorData,
+            "session_id": providerResponse.id,
             "response": "",
             "provider": "",
             "start_time": "test-start-time",
@@ -19,10 +19,10 @@ async function handler(req, res) {
         httpMethod = "POST";
     }
 
-    if (provider_data.action === 'submitted') {
+    if (providerResponse.action === 'submitted') {
         data = {
-            "user_id": provider_data.vendorData,
-            "session_id": provider_data.id,
+            "user_id": providerResponse.vendorData,
+            "session_id": providerResponse.id,
             "response": "",
             "provider": "",
             "start_time": "",
