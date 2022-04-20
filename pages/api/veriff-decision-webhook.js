@@ -1,10 +1,9 @@
 async function handler(req, res) {
-    console.log("Decision Webhook Body: ", req.body)
-
+    const providerResponse = req.body;
     const data = {
-        "user_id": "",
-        "session_id": "",
-        "response": req.body,
+        "user_id": providerResponse.verification.vendorData,
+        "session_id": providerResponse.verification.id,
+        "response": providerResponse,
         "provider": "",
         "start_time": "",
         "stop_time": ""
