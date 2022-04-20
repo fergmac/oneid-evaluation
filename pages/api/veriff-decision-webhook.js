@@ -4,10 +4,12 @@ async function handler(req, res) {
         "user_id": providerResponse.verification.vendorData,
         "session_id": providerResponse.verification.id,
         "response": providerResponse,
-        "provider": "",
+        "provider": "veriff",
         "start_time": "",
         "stop_time": ""
     }
+
+    console.log("Data: ", data)
     
     try {
         const response = await fetch("https://dcwsy6m8yg.execute-api.ca-central-1.amazonaws.com/default/one_id_testing_responses", {

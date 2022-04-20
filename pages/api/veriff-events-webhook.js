@@ -12,7 +12,7 @@ async function handler(req, res) {
             "user_id": providerResponse.vendorData,
             "session_id": providerResponse.id,
             "response": "",
-            "provider": "",
+            "provider": "veriff",
             "start_time": "test-start-time",
             "stop_time": ""
         }
@@ -24,12 +24,14 @@ async function handler(req, res) {
             "user_id": providerResponse.vendorData,
             "session_id": providerResponse.id,
             "response": "",
-            "provider": "",
+            "provider": "veriff",
             "start_time": "",
             "stop_time": "test-stop-time"
         }
         httpMethod = "PATCH";
     }
+
+    console.log("Data: ", data)
 
     try {
         const response = await fetch("https://dcwsy6m8yg.execute-api.ca-central-1.amazonaws.com/default/one_id_testing_responses", {
