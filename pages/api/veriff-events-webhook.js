@@ -42,9 +42,8 @@ async function handler(req, res) {
             },
             body: JSON.stringify(data)
         });
-        const response_data = await response.json();
         console.log("Response: ", response.status);
-        // res.status(200).json({msg: "Event Webhook Success", data: response_data});
+        res.status(200).json({msg: "Event Webhook Success",});
     } catch (error) {
         console.log("Error: ", error);
         res.status(400).json({msn: "Event Webhook Error"})
