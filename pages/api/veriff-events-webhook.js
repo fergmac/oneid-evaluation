@@ -5,6 +5,7 @@ async function handler(req, res) {
 
     const provider_data = req.body
     let data;
+    let httpMethod;
     // let timeStamp = new Date();
     // timeStamp = timeStamp.toUTCString().split(" ")['4'];
 
@@ -12,22 +13,29 @@ async function handler(req, res) {
         data = {
             "user_id": provider_data.vendorData,
             "session_id": provider_data.id,
-            "start_time": "test"
+            "response": "",
+            "provider": "",
+            "start_time": "test-start-time",
+            "stop_time": ""
         }
+        httpMethod = "POST";
     }
 
     if (provider_data.action === 'submitted') {
         data = {
             "user_id": provider_data.vendorData,
             "session_id": provider_data.id,
-            "stop_time": "test"
+            "response": "",
+            "provider": "",
+            "start_time": "",
+            "stop_time": "test-stop-time"
         }
+        httpMethod = "PATCH";
     }
 
-    console.log("Data: ", data);
     try {
         const response = await fetch("https://dcwsy6m8yg.execute-api.ca-central-1.amazonaws.com/default/one_id_testing_responses", {
-            method: 'PATCH',
+            method: httpMethod,
             headers: {
                 "Content-Type": "application/json",
                 "x-api-key": process.env.API_KEY,
@@ -35,8 +43,8 @@ async function handler(req, res) {
             body: JSON.stringify(data)
         });
         const response_data = await response.json();
-        console.log("Response: ", response_data);
-        res.status(200).json({msg: "Event Webhook Success"});
+        console.log("Response: ", response.status);
+        // res.status(200).json({msg: "Event Webhook Success", data: response_data});
     } catch (error) {
         console.log("Error: ", error);
         res.status(400).json({msn: "Event Webhook Error"})
