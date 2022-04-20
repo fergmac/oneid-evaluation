@@ -6,8 +6,6 @@ async function handler(req, res) {
     const provider_data = req.body
     let data;
     let httpMethod;
-    // let timeStamp = new Date();
-    // timeStamp = timeStamp.toUTCString().split(" ")['4'];
 
     if (provider_data.action === 'started') {
         data = {
@@ -42,11 +40,9 @@ async function handler(req, res) {
             },
             body: JSON.stringify(data)
         });
-        console.log("Response: ", response.status);
-        res.status(200).json({msg: "Event Webhook Success",});
+        res.status(response.status).json({msg: "Event Webhook Success"});
     } catch (error) {
-        console.log("Error: ", error);
-        res.status(400).json({msn: "Event Webhook Error"})
+        res.status(error.status).json({msn: "Event Webhook Error"})
     }
 }
 
