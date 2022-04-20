@@ -23,6 +23,8 @@ async function handler(req, res) {
             "stop_time": "test"
         }
     }
+
+    console.log("Data: ", data);
     try {
         const response = await fetch("https://dcwsy6m8yg.execute-api.ca-central-1.amazonaws.com/default/one_id_testing_responses", {
             method: 'PATCH',
