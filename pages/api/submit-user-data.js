@@ -1,7 +1,8 @@
-export default function handler(req, res) {
+async function handler(req, res) {
     const userData = JSON.parse(req.body);
 
-    fetch("https://2un07fmcmd.execute-api.ca-central-1.amazonaws.com/default/one_id_testing_user", {
+    try {
+        const response = await fetch("https://2un07fmcmd.execute-api.ca-central-1.amazonaws.com/default/one_id_testing_user", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -17,11 +18,11 @@ export default function handler(req, res) {
                     "date_of_birth": userData.dateOfBirth
                 }
             )
-    }).then((response) => {
-        console.log("Fetch to User Data Endpoint - Response: ", response.json())
-        res.status(200).json({ msg: 'User Data Submitted.', res: response.json() }); 
-    }).catch((error) => {
-        console.log("User Data Submit Error: ", error);
-        res.status(error.status).json({ msg: "User Data Submit Error: ", err: error });
-    })
+        })
+        res.status(200).json({ msg: 'User Data Submitted.'}); 
+    } catch (error) {
+        res.status(error.status).json({ msg: "User Data Submit Error: "});
+    }
 }
+
+export default handler;
