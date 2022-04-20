@@ -32,11 +32,11 @@ async function handler(req, res) {
             },
             body: JSON.stringify(data)
         });
-        console.log("Fetch to OneID Endpoint - Response: ", response.json());
-        res.status(200).json({ msg: 'Veriff Events Webhook Data Submitted: ', res: response.json() });
+        console.log("Response: ", response);
+        res.status(200);
     } catch (error) {
-        console.log("Veriff Event Data Submit Error: ", error);
-        res.status(error.status).json({ msg: "Veriff Event Data Submit Error: ", err: error });
+        console.log("Error: ", error);
+        res.status(400)
     }
 }
 
