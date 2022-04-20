@@ -5,20 +5,20 @@ import Image from 'next/image';
 function Vouched() {
 
     useEffect(() => {
-        // var vouched = Vouched({
-        //     appId: "Vu#UQ-wfriGb!85W0cZEEwGS#7.s~n",
-        //     // your webhook for POST verification processing
-        //     callbackURL: '',
-        //     // mobile handoff
-        //     crossDevice: true,
-        //     crossDeviceQRCode: true,
-        //     sandbox: true,
-        //     // theme
-        //     theme: {
-        //         name: 'avant',
-        //     },
-        //     });
-        //     vouched.mount("#vouched-root");
+        var vouched = Vouched({
+            appId: "Vu#UQ-wfriGb!85W0cZEEwGS#7.s~n",
+            // your webhook for POST verification processing
+            callbackURL: 'https://oneid-evaluation-bckyzddv6-fergmac.vercel.app/api/vouched-webhook',
+            // mobile handoff
+            crossDevice: true,
+            crossDeviceQRCode: true,
+            sandbox: true,
+            // theme
+            theme: {
+                name: 'avant',
+            },
+        });
+        vouched.mount("#vouched-root");
     });
 
     // let vouchedOpen = false;
