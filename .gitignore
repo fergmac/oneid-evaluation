@@ -36,3 +36,4 @@ server.*
 
 # vscode history
 .history*
+.env
