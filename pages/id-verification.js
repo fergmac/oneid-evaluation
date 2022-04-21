@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useRouter } from 'next/router';
+import VouchedProvider from '../components/vouched.js';
 import VeriffProvider from '../components/veriff.js';
 
 function OneIDEvaluation() {
@@ -28,6 +29,7 @@ function OneIDEvaluation() {
     return (
         <div className="content">
             <h3>OneID Provider Evaluation</h3>
+            <VouchedProvider />
             <VeriffProvider />
         </div>);
 }
