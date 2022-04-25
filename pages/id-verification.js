@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useRouter } from 'next/router';
 import VouchedProvider from '../components/vouched.js';
 import VeriffProvider from '../components/veriff.js';
+import JumioProvider from '../components/jumio.js';
 
 function OneIDEvaluation() {
     const router = useRouter();
@@ -29,6 +30,7 @@ function OneIDEvaluation() {
     return (
         <div className="content">
             <h3>OneID Provider Evaluation</h3>
+            <JumioProvider />
             <VouchedProvider />
             <VeriffProvider />
         </div>);
