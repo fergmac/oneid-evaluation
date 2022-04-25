@@ -1,5 +1,5 @@
 async function handler(req, res) {
-    const providerResponse = req.body
+    const providerResponse = JSON.parse(req.body)
     const data = {
         "user_id": providerResponse.customerId,
         "session_id": providerResponse.jumioIdScanReference,
