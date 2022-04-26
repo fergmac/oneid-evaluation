@@ -7,9 +7,9 @@ function VouchedProvider() {
 
     useLayoutEffect(() => {
         var vouched = Vouched({
-            appId: process.env.VOUCHED_APP_ID,
+            appId: process.env.NEXT_PUBLIC_VOUCHED_APP_ID,
             // your webhook for POST verification processing
-            callbackURL: process.env.VOUCHED_CALLBACK_URL,
+            callbackURL: process.env.NEXT_PUBLIC_VOUCHED_CALLBACK_URL,
             // mobile handoff
             crossDevice: true,
             crossDeviceQRCode: true,
