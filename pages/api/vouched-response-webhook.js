@@ -22,9 +22,9 @@ async function handler(req, res) {
             },
             body: JSON.stringify(data)
         });
-        res.status(response.status).json({msg: "Decision Webhook Success"});
+        res.status(response?.status).json({msg: "Decision Webhook Success"});
     } catch (error) {
-        res.status(error.status).json({msn: "Decision Webhook Error"})
+        res.status(error?.status).json({msn: "Decision Webhook Error"})
     }
 }
 

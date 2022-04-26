@@ -9,7 +9,7 @@ function VouchedProvider() {
         var vouched = Vouched({
             appId: process.env.NEXT_PUBLIC_VOUCHED_APP_ID,
             // your webhook for POST verification processing
-            callbackURL: process.env.NEXT_PUBLIC_VOUCHED_CALLBACK_URL,
+            callbackURL: `${process.env.VERCEL_URL}${process.env.NEXT_PUBLIC_VOUCHED_CALLBACK_PATH}`,
             // mobile handoff
             crossDevice: true,
             crossDeviceQRCode: true,
