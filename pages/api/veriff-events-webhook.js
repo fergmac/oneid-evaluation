@@ -13,8 +13,9 @@ async function handler(req, res) {
             "session_id": providerResponse.id,
             "response": "",
             "provider": "veriff",
-            "start_time": "test-start-time",
-            "stop_time": ""
+            "session_start_time": "test-start-time",
+            "session_end_time": "",
+            "session_response_time": ""
         }
         httpMethod = "POST";
     }
@@ -25,8 +26,9 @@ async function handler(req, res) {
             "session_id": providerResponse.id,
             "response": "",
             "provider": "veriff",
-            "start_time": "",
-            "stop_time": "test-stop-time"
+            "session_start_time": "",
+            "session_end_time": "test-stop-time",
+            "session_response_time": ""
         }
         httpMethod = "PATCH";
     }

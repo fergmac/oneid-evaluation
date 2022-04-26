@@ -2,13 +2,20 @@ import {useLayoutEffect, useEffect} from 'react';
 import Image from 'next/image';
 
 function YotiProvider() {
+  const origin = 'https://api.yoti.com/sandbox/idverify/v1/web';
+
+  const sessionId ='0bec8691-2991-42cc-b9cc-d1b1f2741899'
+  const sessionToken='829af125-7693-446e-9982-aa2d09912dc2'
+
+
+  const yotiIframeUrl = new URL(process.env.NEXT_PUBLIC_YOTI_IFRAME_URL);
+  yotiIframeUrl.searchParams.append("sessionID", sessionId);
+  yotiIframeUrl.searchParams.append("sessionToken", sessionToken);
+
   useEffect(() => {
     const iframe = document.getElementById ('iframeId').contentWindow;
-    const origin = 'https://api.yoti.com/';
     window.addEventListener('message', event => {
-      const sessionId ='a4202495-9fae-42ea-999d-7e50aa5cdfb8'
-      const sessionToken='feb9ae99-ee69-4b4e-af18-151e86c1755f'
-      if (event.data.eventType === 'STARTED' && event.origin === origin) {
+      if (event.data.eventType === 'STARTED') {
         iframe.postMessage (
           {
             eventType: 'INIT_SESSION',
@@ -31,25 +38,25 @@ function YotiProvider() {
   });
   return (
     <div className="section">
-      <Image
-        className="logo"
-        width="50"
-        height="50"
-        src="/logo_yoti.png"
-        alt="OneID provider logo"
-      />
+      <div className="yoti-logo-container">
+        <Image src='/logo_yoti.png'
+          alt="OneID provider logo"
+          layout="fill" className="image" />
+      </div>
+
       <div>
         <iframe
-          src={process.env.YOTI_IFRAME_URL}
+          src={yotiIframeUrl}
           allow="camera"
           width="100%"
-          height="100%"
+          height="750"
           style={{
-            height: '605px;',
+            height: '805px;',
             width: '100%;',
             border: 'none',
           }}
           id="iframeId"
+          allowFullScreen
         />
       </div>
     </div>
