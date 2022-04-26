@@ -1,17 +1,17 @@
 async function handler(req, res) {
     const providerResponse = JSON.parse(req.body);
     const data = {
-        "user_id": providerResponse.userId,
-        "session_id": providerResponse.sessionId,
+        "user_id": providerResponse?.userId,
+        "session_id": providerResponse?.sessionId,
         "response": "",
         "provider": "vouched",
-        "session_start_time": providerResponse.sessionStartTime,
-        "session_end_time": providerResponse.sessionEndTime,
-        "session_response_time": providerResponse.sessionResponseTime
+        "session_start_time": providerResponse?.sessionStartTime,
+        "session_end_time": providerResponse?.sessionEndTime,
+        "session_response_time": providerResponse?.sessionResponseTime
     }
 
     try {
-        const response = await fetch("https://dcwsy6m8yg.execute-api.ca-central-1.amazonaws.com/default/one_id_testing_responses", {
+        const response = await fetch(process.env.API_ONE_ID_RESPONSE_URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -4,7 +4,7 @@ async function handler(req, res) {
     console.log("Vouched Webhook Response: ", providerResponse);
     
     const data = {
-        "user_id": providerResponse?.properties[0].userId,
+        "user_id": providerResponse?.properties[0]?.userId,
         "session_id": providerResponse?.id,
         "response": providerResponse,
         "provider": "vouched",
@@ -14,7 +14,7 @@ async function handler(req, res) {
     }
     
     try {
-        const response = await fetch("https://dcwsy6m8yg.execute-api.ca-central-1.amazonaws.com/default/one_id_testing_responses", {
+        const response = await fetch(process.env.API_ONE_ID_RESPONSE_URL, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
