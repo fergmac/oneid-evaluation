@@ -1,11 +1,11 @@
 import { useLayoutEffect } from "react";
 import Image from 'next/image';
 
-function VeriffProvider({}) {
+function VeriffProvider() {
     useLayoutEffect(() => {
         const veriff = Veriff({
-            host: 'https://stationapi.veriff.com',
-            apiKey: '5c681933-2c4c-456d-a8c5-81e2cdc7718e',
+            host: process.env.NEXT_PUBLIC_VERIFF_HOST,
+            apiKey: process.env.NEXT_PUBLIC_VERIFF_API_KEY,
             parentId: 'veriff-button',
             onSession: function (err, response) {
                 window.veriffSDK.createVeriffFrame({ url: response.verification.url });

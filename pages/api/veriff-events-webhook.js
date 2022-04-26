@@ -1,7 +1,7 @@
 // TODO: should check webhook comes from Veriff: https://developers.veriff.com/#address-media-mediaid
 async function handler(req, res) {
     console.log("Event Webhook - Provider Data: ", req.body);
-    console.log("Event Type: ", req.body.action);
+    console.log("Event Type: ", req.body?.action);
 
     const providerResponse = req.body
     let data;
@@ -22,8 +22,8 @@ async function handler(req, res) {
 
     if (providerResponse.action === 'submitted') {
         data = {
-            "user_id": providerResponse.vendorData,
-            "session_id": providerResponse.id,
+            "user_id": providerResponse?.vendorData,
+            "session_id": providerResponse?.id,
             "response": "",
             "provider": "veriff",
             "session_start_time": "",
@@ -36,7 +36,7 @@ async function handler(req, res) {
     console.log("Data: ", data)
 
     try {
-        const response = await fetch("https://dcwsy6m8yg.execute-api.ca-central-1.amazonaws.com/default/one_id_testing_responses", {
+        const response = await fetch(process.env.API_ONE_ID_RESPONSE_URL, {
             method: httpMethod,
             headers: {
                 "Content-Type": "application/json",
@@ -44,9 +44,9 @@ async function handler(req, res) {
             },
             body: JSON.stringify(data)
         });
-        res.status(response.status).json({msg: "Event Webhook Success"});
+        res.status(response?.status).json({msg: "Event Webhook Success"});
     } catch (error) {
-        res.status(error.status).json({msn: "Event Webhook Error"})
+        res.status(error?.status).json({msn: "Event Webhook Error"})
     }
 }
 
