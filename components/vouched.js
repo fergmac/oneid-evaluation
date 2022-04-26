@@ -6,12 +6,10 @@ function VouchedProvider() {
     const [showVouchedRoot, setShowVouchedRoot] = useState(false);
 
     useLayoutEffect(() => {
-        const userData = localStorage.getItem("userData");
-
         var vouched = Vouched({
-            appId: "~qjjNu47bOm6zoYO*2GFY-V#2sYG#y",
+            appId: process.env.NEXT_PUBLIC_VOUCHED_APP_ID,
             // your webhook for POST verification processing
-            callbackURL: 'https://oneid-evaluation-bckyzddv6-fergmac.vercel.app/api/vouched-webhook',
+            callbackURL: `${process.env.VERCEL_URL}${process.env.NEXT_PUBLIC_VOUCHED_CALLBACK_PATH}`,
             // mobile handoff
             crossDevice: true,
             crossDeviceQRCode: true,
@@ -20,63 +18,60 @@ function VouchedProvider() {
             theme: {
                 name: 'avant',
             },
+            properties: [
+                { "userId": JSON.parse(localStorage.getItem("userData"))?.userId}
+            ],
             onInit: ({ token, job }) => {
-
-                data = {
-                    "user_id": userData.id,
-                    "session_id": job.token,
+                console.log("Vouched Session onInit");
+                const userId = JSON.parse(localStorage.getItem("userData"))?.userId
+                const data = {
+                    "userId": userId,
+                    "sessionId": token,
                     "response": "",
                     "provider": "vouched",
-                    "session_start_time": "test-start-time",
-                    "session_end_time": "",
-                    "session_response_time": ""
+                    "sessionStartTime": "test-start-time",
+                    "sessionEndTime": "",
+                    "sessionResponseTime": ""
                 }
 
-                console.log("Vouched Session onInit");
-
-                fetch('api/vouched-events-webhook', {
-                    method: 'POST',
-                    body: data
-                })
-                    .then((res) => {
-                        console.log("response post fetch", res)
-                    }).catch((err) => console.log("Error: ", err));
-                
+                localStorage.setItem(`${token}`, JSON.stringify(data));   
             },
             onDone: ({ token, obj }) => {
-                data = {
-                    "user_id": userData.id,
-                    "session_id": job.token,
-                    "response": "",
-                    "provider": "vouched",
-                    "session_start_time": "",
-                    "session_end_time": "test-end-time",
-                    "session_response_time": ""
-                }
-
                 console.log("Vouched Session onDone");
 
-                fetch('api/vouched-events-webhook', {
-                    method: 'POST',
-                    body: data
-                })
-                    .then((res) => {
-                        console.log("response post fetch", res)
-                    }).catch((err) => console.log("Error: ", err));
-                
+                let updatedData = JSON.parse(localStorage.getItem(`${token}`));
+                updatedData["sessionEndTime"] = "test-end-time"
+
+                localStorage.setItem(`${token}`, JSON.stringify(updatedData));
+
+                const customEvent = new CustomEvent("vouchedSubmit", { "detail": token});
+                window.dispatchEvent(customEvent);
             }
         });
         vouched.mount("#vouched-root");
     });
 
-    // useEffect(() => {
-    //     window.addEventListener('message', (event) => {
-    //         if (event.data.eventType === 'STARTED') {
-    //             console.log("Vouched Session Message - Started.");
-    //         }
-    //         console.log("Event Data: ", event)
-    //     });
-    // })
+    useEffect(() => {
+        window.addEventListener('vouchedSubmit', (event) => {
+            // TODO: this event is triggering multiple times
+            if (!localStorage.getItem("vouchSubmitted")) {
+                console.log("Vouch Has Been Submitted.", event)
+
+                const data = JSON.parse(localStorage.getItem(`${event.detail}`));
+
+                console.log("Data: ", data);
+                    fetch('api/vouched-events-webhook', {
+                        method: 'POST',
+                        body: JSON.stringify(data)
+                    })
+                        .then((res) => {
+                            console.log("response post fetch", res)
+                            localStorage.setItem("vouchSubmitted", true);
+                        })
+                        .catch((err) => console.log("Error: ", err));
+            }
+        });
+    })
 
     const toggleVouched = () => {
         setShowVouchedRoot(true);
