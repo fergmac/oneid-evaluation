@@ -19,9 +19,9 @@ async function handler(req, res) {
                 }
             )
         })
-        res.status(200).json({ msg: 'User Data Submitted.'}); 
+        res.status(response?.status).json({ msg: 'User Data Submitted.'}); 
     } catch (error) {
-        res.status(error.status).json({ msg: "User Data Submit Error: "});
+        res.status(error?.status).json({ msg: "User Data Submit Error: "});
     }
 }
 
