@@ -5,21 +5,11 @@ function JumioProvider() {
     const [jumioUrl, setJumioUrl] = useState(null);
 
     useEffect(() => {
-        // TODO: should this be initialized somewhere else, on page refresh we start from the beginning again
         const userData = localStorage.getItem("userData");
 
         function receiveMessage(event) {
             console.log("Event Data: ", event.data);
             // var data = window.JSON.parse(event.data);
-            // console.log('ID Verification Web was loaded in an iframe.');
-            // console.log('auth-token:', data.authorizationToken);
-            // console.log('event-type:', data.eventType);
-            // console.log('date-time:', data.dateTime);
-            // console.log('workflow-execution-id:', data.workflowExecutionId);
-            // console.log('account-id:', data.accountId);
-            // console.log('customer-internal-reference:', data.customerInternalReference);
-            // console.log('value:', data.payload.value);
-            // console.log('metainfo:', data.payload.metainfo);
         }
         window.addEventListener("message", receiveMessage, false);
 
