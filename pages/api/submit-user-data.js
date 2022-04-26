@@ -1,8 +1,8 @@
 async function handler(req, res) {
     const userData = JSON.parse(req.body);
-
+    const url = process.env.API_USER_DATA_URL
     try {
-        const response = await fetch(process.env.API_USER_DATA_URL, {
+        const response = await fetch(`${url}`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
