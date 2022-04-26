@@ -5,11 +5,9 @@ async function handler(req, res) {
 
     const credentials = new Buffer(`${userName}:${password}`).toString('base64');
 
-    console.log("Jumio Init User Data: ", userData);
-
     // TODO: add customer internal reference
     try {
-        const response = await fetch("https://netverify.com/api/v4/initiate", {
+        const response = await fetch(process.env.JUMIO_INITIATE_TRANSACTION_URL, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -25,11 +23,9 @@ async function handler(req, res) {
             })
         })
         const data = await response.json()
-        console.log("Jumio Init Data: ", data);
-        res.status(200).json({ msg: 'Jumio Initiate ID Verification.', data: data}); 
+        res.status(response?.status).json({ msg: 'Jumio Initiate ID Verification.', data: data}); 
     } catch (error) {
-        console.log("Jumio Init Error: ", error);
-        res.status(400).json({ msg: "Jumio Initiate ID Verification Error: "});
+        res.status(error?.status).json({ msg: "Jumio Initiate ID Verification Error: "});
     }
 }
 

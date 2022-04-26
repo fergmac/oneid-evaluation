@@ -12,7 +12,7 @@ async function handler(req, res) {
     }
 
     try {
-        const response = await fetch("https://dcwsy6m8yg.execute-api.ca-central-1.amazonaws.com/default/one_id_testing_responses", {
+        const response = await fetch(process.env.API_ONE_ID_RESPONSE_URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -20,9 +20,9 @@ async function handler(req, res) {
             },
             body: JSON.stringify(data)
         });
-        res.status(response.status).json({msg: "Jumio Response Webhook Success."});
+        res.status(response?.status).json({msg: "Jumio Response Webhook Success."});
     } catch (error) {
-        res.status(error.status).json({msn: "Jumio Response Webhook Error."})
+        res.status(error?.status).json({msn: "Jumio Response Webhook Error."})
     }
 }
 
