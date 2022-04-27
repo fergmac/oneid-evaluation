@@ -1,0 +1,14 @@
+.button,
+.button:active {
+    background-color: #3a2ca8;
+}
+
+.button:hover,
+.button:focus {
+    background-color: #5043b5;
+}
+
+.logoWrapper {
+
+    border: 1px solid red;
+}

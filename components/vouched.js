@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useState } from "react";
 import Image from 'next/image';
+import styles from '../styles/vouched.module.css';
 
 
 function VouchedProvider() {
@@ -79,9 +80,9 @@ function VouchedProvider() {
 
     return (
         <div className="section">
-            <Image className="logo" width="300" height="200" src="/logo_vouched.png" alt="OneID provider logo" />
+            <Image className="logo" width="100" height="50" src="/logo_vouched.svg" alt="OneID provider logo" />
             <div>
-                <button id='vouched-button' onClick={toggleVouched}>VERIFY NOW</button>
+                <button className={styles.button} onClick={toggleVouched}>VERIFY NOW</button>
                 {showVouchedRoot ? <div id='vouched-root' className="full-width"></div> : null}
             </div>
         </div>
