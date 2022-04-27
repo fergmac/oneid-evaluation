@@ -16,6 +16,11 @@ h1 {
   font-weight: 800;
 }
 
+main {
+  max-width: 1024px;
+  margin: auto;
+}
+
 label,
 input,
 .input {
@@ -74,6 +79,10 @@ input[type="text"] {
   margin-bottom: 1.5rem;
 }
 
+button {
+  margin-top: 20px;
+}
+
 .full-width {
   width: 100vw;
   position: relative;
@@ -113,7 +122,7 @@ background-color: #15639b;
 button#authentic-button:focus {
 background-color: #1c73b1;
 } */
-button#vouched-button,
+/* button#vouched-button,
 button#vouched-button:active {
   background-color: #3a2ca8;
 }
@@ -121,7 +130,7 @@ button#vouched-button:active {
 button#vouched-button:hover,
 button#vouched-button:focus {
   background-color: #5043b5;
-}
+} */
 
 #vouched-root {
   height: 60vh;

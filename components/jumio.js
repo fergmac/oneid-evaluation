@@ -1,7 +1,9 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import styles from '../styles/jumio.module.css';
 
 function JumioProvider() {
+    const [showProvider, setShowProvider] = useState(false);
     const [jumioUrl, setJumioUrl] = useState(null);
 
     useEffect(() => {
@@ -27,12 +29,21 @@ function JumioProvider() {
             })
             
     }, [])
+
+    const toggleProvider = () => {
+        setShowProvider(true);
+    }
     
     return (
         <div className="section">
             <Image className="logo" width="100" height="50" src="/logo_jumio.svg" alt="OneID provider logo" />
-            <div>Integrate Jumio</div>
-            <iframe loading="lazy" src={jumioUrl} width="70%" height="650px" allow="camera;fullscreen;accelerometer;gyroscope;magnetometer" allowFullScreen></iframe>
+            {
+                showProvider ?
+                    <iframe loading="lazy" src={jumioUrl} width="70%" height="650px" allow="camera;fullscreen;accelerometer;gyroscope;magnetometer" allowFullScreen></iframe>
+                    :
+                    null
+            }
+            <button className={styles.button} onClick={toggleProvider}>VERIFY NOW</button>
         </div>
     );
 
