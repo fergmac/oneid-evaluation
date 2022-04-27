@@ -30,20 +30,15 @@ function JumioProvider() {
             
     }, [])
 
-    const toggleProvider = () => {
-        setShowProvider(true);
-    }
+    // const toggleProvider = () => {
+    //     setShowProvider(true);
+    // }
     
     return (
         <div className="section">
             <Image className="logo" width="100" height="50" src="/logo_jumio.svg" alt="OneID provider logo" />
-            {
-                showProvider ?
-                    <iframe loading="lazy" src={jumioUrl} width="70%" height="650px" allow="camera;fullscreen;accelerometer;gyroscope;magnetometer" allowFullScreen></iframe>
-                    :
-                    null
-            }
-            <button className={styles.button} onClick={toggleProvider}>VERIFY NOW</button>
+            <iframe className={styles.jumioIframe} loading="lazy" src={jumioUrl} width="70%" height="650px" allow="camera;fullscreen;accelerometer;gyroscope;magnetometer" allowFullScreen></iframe>
+            {/* <button className={styles.button} onClick={toggleProvider}>VERIFY NOW</button> */}
         </div>
     );
 

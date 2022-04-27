@@ -28,28 +28,28 @@ function UserForm() {
     }
 
     return (
-        <>
+        <div className="formWrapper">
             <h4>Please enter the following information as it appears on your ID.</h4>
             <form action="" method="" id="regForm" name="regForm" onSubmit={handleFormSubmit}>
-                <div>
-                    <label htmlFor="firstName">First Name:</label>
-                    <input type="text" name="firstName" required />
-                </div>
-                <div>
-                    <label htmlFor="middleName">Middle Name:</label>
-                    <input type="text" name="middleName" required />
-                </div>
-                <div>
-                    <label htmlFor="lastName">Last Name:</label>
-                    <input type="text" name="lastName" required />
-                </div>
-                <label htmlFor="dateOfBirth">Date Of Birth:</label>
-                <input type="date" name="dateOfBirth" min="1940-01-01" max="2022-06-01" required />
-                <div>
-                    <input type="submit" value="Submit" />
-                </div>
+                <fieldset>
+                    <div>
+                        <label htmlFor="firstName">First Name:</label>
+                        <input type="text" name="firstName" required />
+                    </div>
+                    <div>
+                        <label htmlFor="middleName">Middle Name:</label>
+                        <input type="text" name="middleName" required />
+                    </div>
+                    <div>
+                        <label htmlFor="lastName">Last Name:</label>
+                        <input type="text" name="lastName" required />
+                    </div>
+                    <label htmlFor="dateOfBirth">Date Of Birth:</label>
+                    <input type="date" name="dateOfBirth" min="1940-01-01" max="2022-06-01" required />
+                    <button type="submit">Submit</button>
+                </fieldset>
             </form>
-        </>
+        </div>
     )
 }
 

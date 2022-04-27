@@ -74,16 +74,16 @@ function VouchedProvider() {
         });
     })
 
-    const toggleVouched = () => {
-        setShowVouchedRoot(true);
-    }
+    // const toggleVouched = () => {
+    //     setShowVouchedRoot(true);
+    // }
 
     return (
         <div className="section">
             <Image className="logo" width="100" height="50" src="/logo_vouched.svg" alt="OneID provider logo" />
             <div>
-                <button className={styles.button} onClick={toggleVouched}>VERIFY NOW</button>
-                {showVouchedRoot ? <div id='vouched-root' className="full-width"></div> : null}
+                {/* <button className={styles.button} onClick={toggleVouched}>VERIFY NOW</button> */}
+                <div id='vouched-root'></div>
             </div>
         </div>
     );

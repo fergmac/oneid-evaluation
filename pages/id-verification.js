@@ -1,8 +1,10 @@
 import { useEffect } from "react";
 import { useRouter } from 'next/router';
-import VouchedProvider from '../components/vouched.js';
-import VeriffProvider from '../components/veriff.js';
-import JumioProvider from '../components/jumio.js';
+import Link from 'next/link'
+import Image from 'next/image';
+// import VouchedProvider from '../components/vouched.js';
+// import VeriffProvider from '../components/veriff.js';
+// import JumioProvider from '../components/jumio.js';
 
 function OneIDEvaluation() {
     const router = useRouter();
@@ -28,11 +30,27 @@ function OneIDEvaluation() {
     });
 
     return (
-        <div className="content">
-            <h3>OneID Provider Evaluation</h3>
-            <JumioProvider />
-            <VouchedProvider />
-            <VeriffProvider />
+        <div className="providerLinks">
+            <Link href="/jumio-verification">
+                <a className="provider">
+                    <Image className="logo" width="100" height="50" src="/logo_jumio.svg" alt="OneID provider logo" />
+                </a>
+            </Link>
+            <Link href="/vouched-verification">
+                <a className="provider">
+                    <Image className="logo" width="100" height="50" src="/logo_vouched.svg" alt="OneID provider logo" />
+                </a>
+            </Link>
+            <Link href="/veriff-verification">
+                <a className="provider">
+                    <Image className="logo" width="100" height="50" src="/logo_veriff.svg" alt="OneID provider logo" />
+                </a>
+            </Link>
+            <Link href="/yoti-verification">
+                <a className="provider">
+                    <Image className="logo" width="100" height="50" src="/logo_yoti.png" alt="OneID provider logo" />
+                </a>
+            </Link>
         </div>);
 }
 
