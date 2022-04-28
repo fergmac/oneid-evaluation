@@ -1,5 +1,7 @@
 async function handler(req, res) {
     const providerResponse = JSON.parse(req.body);
+    const url = process.env.API_ONE_ID_RESPONSE_URL
+    const apiKey = process.env.API_KEY
     const data = {
         "user_id": providerResponse?.userId,
         "session_id": providerResponse?.sessionId,
@@ -11,11 +13,11 @@ async function handler(req, res) {
     }
 
     try {
-        const response = await fetch(process.env.API_ONE_ID_RESPONSE_URL, {
+        const response = await fetch(`${url}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "x-api-key": process.env.API_KEY,
+                "x-api-key": `${apiKey}`,
             },
             body: JSON.stringify(data)
         });

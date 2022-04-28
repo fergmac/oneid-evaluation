@@ -1,6 +1,7 @@
 async function handler(req, res) {
     const providerResponse = req.body
     const url = process.env.API_ONE_ID_RESPONSE_URL
+    const apiKey = process.env.API_KEY
     console.log("Provider Response: ", providerResponse);
     const data = {
         "user_id": providerResponse?.customerId,
@@ -17,7 +18,7 @@ async function handler(req, res) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "x-api-key": process.env.API_KEY,
+                "x-api-key": `${apiKey}`,
             },
             body: JSON.stringify(data)
         });
