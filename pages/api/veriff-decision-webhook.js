@@ -1,5 +1,6 @@
 async function handler(req, res) {
     const providerResponse = req.body;
+    const url = process.env.API_ONE_ID_RESPONSE_URL
     const data = {
         "user_id": providerResponse?.verification?.vendorData,
         "session_id": providerResponse?.verification?.id,
@@ -13,7 +14,7 @@ async function handler(req, res) {
     console.log("Data: ", data)
     
     try {
-        const response = await fetch(process.env.API_ONE_ID_RESPONSE_URL, {
+        const response = await fetch(`${url}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
