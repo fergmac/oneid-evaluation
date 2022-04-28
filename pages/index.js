@@ -16,9 +16,7 @@ function HomePage() {
 
     return (
         <>
-            <div className="content">
-                <UserForm />
-            </div>
+            <UserForm />
         </>
     );
 }
