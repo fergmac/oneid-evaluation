@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import styles from '../styles/jumio.module.css';
 
 function JumioProvider() {
-    const [showProvider, setShowProvider] = useState(false);
+    // const [showProvider, setShowProvider] = useState(false);
     const [jumioUrl, setJumioUrl] = useState(null);
 
     useEffect(() => {
@@ -23,6 +23,8 @@ function JumioProvider() {
             .then((res) => {
                 console.log("Jumio Init Data: ", res);
                 setJumioUrl(res.data.redirectUrl);
+
+                // TODO: use data.timestamp for session_start_time
             })
             .catch((error) => {
                 console.log("Error: ", error);

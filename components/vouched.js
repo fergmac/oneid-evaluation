@@ -32,7 +32,7 @@ function VouchedProvider() {
                     "sessionId": token,
                     "response": "",
                     "provider": "vouched",
-                    "sessionStartTime": "test-start-time",
+                    "sessionStartTime": new Date().getTime(),
                     "sessionEndTime": "",
                     "sessionResponseTime": ""
                 }
@@ -43,7 +43,7 @@ function VouchedProvider() {
                 console.log("Vouched Session onDone");
 
                 let updatedData = JSON.parse(localStorage.getItem(`${token}`));
-                updatedData["sessionEndTime"] = "test-end-time"
+                updatedData["sessionEndTime"] = new Date().getTime();
 
                 localStorage.setItem(`${token}`, JSON.stringify(updatedData));
 
