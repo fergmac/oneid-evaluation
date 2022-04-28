@@ -1,5 +1,7 @@
 async function handler(req, res) {
     const providerResponse = req.body;
+    const url = process.env.API_ONE_ID_RESPONSE_URL
+    const apiKey = process.env.API_KEY
     const data = {
         "user_id": providerResponse?.verification?.vendorData,
         "session_id": providerResponse?.verification?.id,
@@ -13,17 +15,18 @@ async function handler(req, res) {
     console.log("Data: ", data)
     
     try {
-        const response = await fetch(process.env.API_ONE_ID_RESPONSE_URL, {
+        const response = await fetch(`${url}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
-                "x-api-key": process.env.API_KEY,
+                "x-api-key": `${apiKey}`,
             },
             body: JSON.stringify(data)
         });
-        res.status(response?.status).json({msg: "Decision Webhook Success"});
+        res.status(200).json({msg: "Decision Webhook Success"});
     } catch (error) {
-        res.status(error?.status).json({msn: "Decision Webhook Error"})
+        console.log("Error: ", error?.status)
+        res.status(400).json({msn: "Decision Webhook Error"})
     }
 }
 

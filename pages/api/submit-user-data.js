@@ -1,12 +1,13 @@
 async function handler(req, res) {
     const userData = JSON.parse(req.body);
     const url = process.env.API_USER_DATA_URL
+    const apiKey = process.env.API_KEY
     try {
         const response = await fetch(`${url}`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
-                "x-api-key": process.env.API_KEY,
+                "x-api-key": `${apiKey}`,
 
             },
             body: JSON.stringify(

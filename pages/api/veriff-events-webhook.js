@@ -2,6 +2,8 @@
 async function handler(req, res) {
     console.log("Event Webhook - Provider Data: ", req.body);
     console.log("Event Type: ", req.body?.action);
+    const url = process.env.API_ONE_ID_RESPONSE_URL
+    const apiKey = process.env.API_KEY
 
     const providerResponse = req.body
     let data;
@@ -36,17 +38,17 @@ async function handler(req, res) {
     console.log("Data: ", data)
 
     try {
-        const response = await fetch(process.env.API_ONE_ID_RESPONSE_URL, {
+        const response = await fetch(`${url}`, {
             method: httpMethod,
             headers: {
                 "Content-Type": "application/json",
-                "x-api-key": process.env.API_KEY,
+                "x-api-key": `${apiKey}`,
             },
             body: JSON.stringify(data)
         });
-        res.status(response?.status).json({msg: "Event Webhook Success"});
+        res.status(200).json({msg: "Event Webhook Success"});
     } catch (error) {
-        res.status(error?.status).json({msn: "Event Webhook Error"})
+        res.status(400).json({msn: "Event Webhook Error"})
     }
 }
 
