@@ -1,9 +1,14 @@
+import Link from 'next/link'
 import styles from '../styles/header.module.css'
 
 function Header() {
     return (
         <div className={styles.header}>
-            <h3>OneID Provider Evaluation</h3>
+            <Link href="/id-verification">
+                <a>
+                    <h3>OneID Provider Evaluation</h3>
+                </a>
+            </Link>
         </div>
     )
 }
