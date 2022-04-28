@@ -3,6 +3,7 @@ async function handler(req, res) {
     console.log("Event Webhook - Provider Data: ", req.body);
     console.log("Event Type: ", req.body?.action);
     const url = process.env.API_ONE_ID_RESPONSE_URL
+    const apiKey = process.env.API_KEY
 
     const providerResponse = req.body
     let data;
@@ -41,7 +42,7 @@ async function handler(req, res) {
             method: httpMethod,
             headers: {
                 "Content-Type": "application/json",
-                "x-api-key": process.env.API_KEY,
+                "x-api-key": `${apiKey}`,
             },
             body: JSON.stringify(data)
         });
