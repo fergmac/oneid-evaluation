@@ -5,12 +5,14 @@ import styles from '../styles/vouched.module.css';
 
 function VouchedProvider() {
     const [showVouchedRoot, setShowVouchedRoot] = useState(false);
+    const appId = process.env.NEXT_PUBLIC_VOUCHED_APP_ID
+    const callbackUrl = process.env.NEXT_PUBLIC_VOUCHED_CALLBACK_URL
 
     useLayoutEffect(() => {
         var vouched = Vouched({
-            appId: process.env.NEXT_PUBLIC_VOUCHED_APP_ID,
+            appId: `${appId}`,
             // your webhook for POST verification processing
-            callbackURL: `${process.env.VERCEL_URL}${process.env.NEXT_PUBLIC_VOUCHED_CALLBACK_PATH}`,
+            callbackURL: `${callbackUrl}`,
             // mobile handoff
             crossDevice: true,
             crossDeviceQRCode: true,
