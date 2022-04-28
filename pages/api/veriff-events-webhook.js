@@ -9,13 +9,15 @@ async function handler(req, res) {
     let data;
     let httpMethod;
 
+    const getTimeStamp = () => new Date().getTime();
+
     if (providerResponse.action === 'started') {
         data = {
             "user_id": providerResponse.vendorData,
             "session_id": providerResponse.id,
             "response": "",
             "provider": "veriff",
-            "session_start_time": "test-start-time",
+            "session_start_time": getTimeStamp(),
             "session_end_time": "",
             "session_response_time": ""
         }
@@ -29,7 +31,7 @@ async function handler(req, res) {
             "response": "",
             "provider": "veriff",
             "session_start_time": "",
-            "session_end_time": "test-stop-time",
+            "session_end_time": getTimeStamp(),
             "session_response_time": ""
         }
         httpMethod = "PATCH";

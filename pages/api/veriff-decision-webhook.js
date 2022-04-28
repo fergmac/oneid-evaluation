@@ -9,7 +9,7 @@ async function handler(req, res) {
         "provider": "veriff",
         "session_start_time": "",
         "session_end_time": "",
-        "session_response_time": ""
+        "session_response_time": new Date().getTime()
     }
 
     console.log("Data: ", data)
