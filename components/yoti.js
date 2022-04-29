@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import Image from 'next/image';
 import styles from '../styles/vouched.module.css';
 import { useRouter } from 'next/router';
@@ -25,7 +25,7 @@ function YotiProvider() {
     localStorage.setItem("yotiSessionToken", resultSession.clientSessionToken)
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const userData = localStorage.getItem("userData");
     !userData && router.push("/")
 
@@ -38,9 +38,7 @@ function YotiProvider() {
     const sessionId = localStorage.getItem("yotiSessionId")
     const sessionToken = localStorage.getItem("yotiSessionToken")
     window.addEventListener('message', event => {
-      // For some reason this doesn't work in the first load
-      // Hence the meaningless conditional check below
-      if (event.data.eventType === 'STARTED' || true) {
+      if (event.data.eventType === 'STARTED' && event.origin === origin) {
         iframe.postMessage (
           {
             eventType: 'INIT_SESSION',
@@ -71,7 +69,8 @@ function YotiProvider() {
       <Image className="logo" width="100" height="50" src="/logo_yoti.png" alt="OneID provider logo" />
 
         <iframe
-          src='https://api.yoti.com/idverify/v1/web/index.html'
+        src='https://api.yoti.com/idverify/v1/web/index.html'
+        loading="lazy"
           allow="camera"
           width="100%"
           height="750"
