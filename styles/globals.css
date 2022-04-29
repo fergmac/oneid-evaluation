@@ -149,7 +149,7 @@ main {
 }
 
 .formWrapper .privacyStatement {
-  margin-bottom: 40px;
+  margin-bottom: 10px;
   padding: 30px;
   max-width: 640px;
 }
@@ -367,7 +367,6 @@ display the bar vertically, instead of horizontally */
     font-size: 16px;
   }
   .formWrapper fieldset {
-    padding-left: 0;
-    padding-right: 0;
+    padding: 40px;
   }
 }
