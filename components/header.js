@@ -6,7 +6,7 @@ function Header() {
         <div className={styles.header}>
             <Link href="/id-verification">
                 <a>
-                    <h3>OneID Provider Evaluation</h3>
+                    <h3>ID Verification Platform Evaluation</h3>
                 </a>
             </Link>
         </div>
