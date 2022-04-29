@@ -13,7 +13,7 @@ async function handler(req, res) {
     }
 
     console.log("Data: ", data)
-    
+
     try {
         const response = await fetch(`${url}`, {
             method: "PATCH",
