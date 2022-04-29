@@ -29,8 +29,12 @@ function UserForm() {
 
     return (
         <div className="formWrapper">
-            <h4>Please enter the following information as it appears on your ID.</h4>
             <form action="" method="" id="regForm" name="regForm" onSubmit={handleFormSubmit}>
+                <div className="privacyStatement">
+                    <h4>Please enter the following information as it appears on your government issued ID.</h4>
+                    <div >Privacy Statement: We&apos;re collecting this information so we can measure how well the ID verification platforms capture this information on your identity document. This data will be anonymized to hide personal identifying information. All raw data will be deleted from our records within 30 days of ending the platform evaluation user testing phrase. </div>
+                </div>
+
                 <fieldset>
                     <div>
                         <label htmlFor="firstName">First Name:</label>
@@ -38,7 +42,7 @@ function UserForm() {
                     </div>
                     <div>
                         <label htmlFor="middleName">Middle Name:</label>
-                        <input type="text" name="middleName" required />
+                        <input type="text" name="middleName" />
                     </div>
                     <div>
                         <label htmlFor="lastName">Last Name:</label>

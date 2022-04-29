@@ -2,12 +2,20 @@ import { useEffect } from "react";
 import { useRouter } from 'next/router';
 import Link from 'next/link'
 import Image from 'next/image';
+import { hotjar } from 'react-hotjar';
 // import VouchedProvider from '../components/vouched.js';
 // import VeriffProvider from '../components/veriff.js';
 // import JumioProvider from '../components/jumio.js';
 
 function OneIDEvaluation() {
     const router = useRouter();
+    const hotjarId = 2948417;
+    const hotjarSnippetVersion = 6;
+
+    useEffect(() => {
+        {/* Hotjar Tracking Code for OneID Vendor Evaluation */}
+        hotjar.initialize(hotjarId, hotjarSnippetVersion);
+    }, []);
 
     useEffect(() => {
         const userData = localStorage.getItem("userData");
