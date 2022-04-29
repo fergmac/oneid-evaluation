@@ -2,7 +2,6 @@ async function handler(req, res) {
     const providerResponse = req.body;
     const url = process.env.API_ONE_ID_RESPONSE_URL
     const apiKey = process.env.API_KEY
-    console.log("Vouched Webhook Response: ", providerResponse);
     const data = {
         "user_id": providerResponse?.properties[0]?.userId,
         "session_id": providerResponse?.id,

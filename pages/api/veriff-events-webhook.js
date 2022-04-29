@@ -1,7 +1,5 @@
 // TODO: should check webhook comes from Veriff: https://developers.veriff.com/#address-media-mediaid
 async function handler(req, res) {
-    console.log("Event Webhook - Provider Data: ", req.body);
-    console.log("Event Type: ", req.body?.action);
     const url = process.env.API_ONE_ID_RESPONSE_URL
     const apiKey = process.env.API_KEY
 
@@ -36,8 +34,6 @@ async function handler(req, res) {
         }
         httpMethod = "PATCH";
     }
-
-    console.log("Data: ", data)
 
     try {
         const response = await fetch(`${url}`, {
