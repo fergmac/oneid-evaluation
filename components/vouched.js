@@ -4,7 +4,6 @@ import styles from '../styles/vouched.module.css';
 
 
 function VouchedProvider() {
-    const [showVouchedRoot, setShowVouchedRoot] = useState(false);
     const appId = process.env.NEXT_PUBLIC_VOUCHED_APP_ID
     const callbackUrl = process.env.NEXT_PUBLIC_VOUCHED_CALLBACK_URL
 
@@ -76,15 +75,10 @@ function VouchedProvider() {
         });
     })
 
-    // const toggleVouched = () => {
-    //     setShowVouchedRoot(true);
-    // }
-
     return (
         <div className="section">
             <Image className="logo" width="100" height="50" src="/logo_vouched.svg" alt="OneID provider logo" />
             <div>
-                {/* <button className={styles.button} onClick={toggleVouched}>VERIFY NOW</button> */}
                 <div id='vouched-root'></div>
             </div>
         </div>

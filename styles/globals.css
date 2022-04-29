@@ -47,113 +47,6 @@ main {
   font-size: 14px;
 }
 
-.providerLinks {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.provider {
-  margin: 10px;
-  padding: 100px;
-  border-radius: 10px;
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-
-  /* animation styles */
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  -webkit-animation-timing-function: ease-in-out;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: 1;
-  -webkit-animation-iteration-count: 1;
-
-}
-
-.provider:hover {
-  cursor: pointer;
-  animation-name: bounce;
-  -moz-animation-name: bounce;
-}
-
-@keyframes bounce {
-	0%, 100%, 20%, 50%, 80% {
-		-webkit-transform: translateY(0);
-		-ms-transform:     translateY(0);
-		transform:         translateY(0)
-	}
-	40% {
-		-webkit-transform: translateY(-10px);
-		-ms-transform:     translateY(-10px);
-		transform:         translateY(-10px)
-	}
-	60% {
-		-webkit-transform: translateY(-5px);
-		-ms-transform:     translateY(-5px);
-		transform:         translateY(-5px)
-	}
-}
-
-.formWrapper {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  color: #b0b0b0;
-}
-
-.formWrapper > div {
-  margin-top: 100px;
-  padding: 30px;
-}
-
-.formWrapper fieldset {
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-  border: none;
-  border-radius: 10px;
-  /* padding: 40px; */
-  padding-bottom: 30px;
-}
-
-.formWrapper label {
-  min-width: 120px;
-  max-width: 120px;
-  display: inline-block;
-}
-
-.formWrapper input {
-  border: 1px solid #b0b0b0;
-  border-radius: 5px;
-  padding: 10px;
-}
-
-.formWrapper .button {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  margin: 20px;
-}
-
-.formWrapper button {
-  width: 100%;
-  height: 40px;
-  cursor: pointer;
-  color: white;
-  background-color: #12826A;
-}
-
-.formWrapper button:hover {
-  background-color: #17B893;
-}
-
-.formWrapper .privacyStatement {
-  margin-bottom: 10px;
-  padding: 30px;
-  max-width: 640px;
-}
-
 label,
 input,
 .input {
@@ -174,13 +67,6 @@ input[type="text"] {
   width: 100%;
   height: 100%;
   position: auto !important;
-}
-
-.survey-link {
-  font-size: 1rem;
-  text-decoration: none;
-  color: green;
-  font-weight: 600;
 }
 
 .section-container {
@@ -207,34 +93,16 @@ input[type="text"] {
 .logo {
   display: flex;
   align-self: center;
-  /* width: 67%; */
   margin: auto;
   margin-bottom: 1.5rem;
-}
-
-button {
-  margin-top: 20px;
-}
-
-.full-width {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
 }
 
 .veriff-description {
   display: none;
 }
 
-mati-button {
-  display: block;
-  margin: auto;
-}
-
 button {
+  margin-top: 20px;
   display: block;
   width: 100%;
   height: 3rem;
@@ -247,126 +115,17 @@ button {
   transition: background-color 200ms;
 }
 
-/* button#authentic-button,
-button#authentic-button:active {
-background-color: #15639b;
-} */
-/* button#authentic-button:hover,
-button#authentic-button:focus {
-background-color: #1c73b1;
-} */
-/* button#vouched-button,
-button#vouched-button:active {
-  background-color: #3a2ca8;
-}
-
-button#vouched-button:hover,
-button#vouched-button:focus {
-  background-color: #5043b5;
-} */
-
-#vouched-root {
-  height: 60vh;
-
-  /* unset vouched styles */
-  left: unset;
-  right: unset;
-  margin: 0;
-  padding: 0;
-
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  margin-top: 40px;
-}
-
-/* The side navigation menu */
-.sidebar {
-  margin: 0;
-  padding: 0;
-  width: 200px;
-  background: linear-gradient(to right, #e1eec3, #f05053);
-  position: fixed;
-  height: 100%;
-  overflow: auto;
-}
-
-/* Sidebar links */
-.sidebar a {
-  display: block;
-  color: black;
-  padding: 16px;
-  text-decoration: none;
-}
-
-/* Active/current link */
-.sidebar a.active {
-  background-color: #d6a564;
-  color: white;
-}
-
-/* Links on mouse-over */
-.sidebar a:hover:not(.active) {
-  background-color: #555;
-  color: white;
-}
-
 .content {
   height: 100vh;
   display: flex;
 }
 
-
-/* Page content.
-The value of the margin-left property should match the value of the sidebar's width property */
-/* div.content {
-  margin-left: 200px;
-  padding: 1px 16px;
-  height: 1000px;
-
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-
-} */
-
 #vouched-root.hidden {
   visibility: hidden;
-}
-
-/* On screens that are less than 700px wide,
-make the sidebar into a topbar */
-@media screen and (max-width: 700px) {
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
-  }
-
-  .sidebar a {
-    float: left;
-  }
-
-  div.content {
-    margin-left: 0;
-  }
-}
-
-/* On screens that are less than 400px,
-display the bar vertically, instead of horizontally */
-@media screen and (max-width: 400px) {
-  .sidebar a {
-    text-align: center;
-    float: none;
-  }
 }
 
 @media screen and (min-width: 480px) {
   main {
     font-size: 16px;
-  }
-  .formWrapper fieldset {
-    padding: 40px;
   }
 }
