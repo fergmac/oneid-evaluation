@@ -11,6 +11,7 @@ async function handler(req, res) {
         "session_end_time": "",
         "session_response_time": new Date().getTime()
     }
+
     try {
         const response = await fetch(`${url}`, {
             method: "PATCH",
