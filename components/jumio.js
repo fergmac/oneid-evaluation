@@ -29,13 +29,13 @@ function JumioProvider() {
             .catch((error) => {
                 console.log("Error: ", error);
             })
-            
+
     }, [])
 
     // const toggleProvider = () => {
     //     setShowProvider(true);
     // }
-    
+
     return (
         <div className="section">
             <Image className="logo" width="100" height="50" src="/logo_jumio.svg" alt="OneID provider logo" />

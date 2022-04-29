@@ -1,11 +1,13 @@
 import React from 'react'
 import YotiProvider from '../components/yoti.js';
 
-function YotiVerfication() {
+
+
+function YotiVerification() {
   return (
     <div className="content">
-        <YotiProvider />
+        <YotiProvider/>
     </div>);
 }
 
-export default YotiVerfication
+export default YotiVerification

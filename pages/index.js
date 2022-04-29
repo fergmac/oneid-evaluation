@@ -2,7 +2,6 @@ import Script from 'next/script'
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import UserForm from '../components/userForm';
-import IdVerification from './id-verification';
 
 
 function HomePage() {
