@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import Image from 'next/image';
 import styles from '../styles/vouched.module.css';
 import { useRouter } from 'next/router';
@@ -7,24 +7,6 @@ function YotiProvider() {
   const origin = 'https://api.yoti.com';
   const router = useRouter();
 
-  // Get session details from API GW endpoint
-  async function getYotiSession (userId = "defaultYoti") {
-    const response = await fetch('api/yoti-session', {
-      method: "GET",
-      params: {
-        user_id: userId
-      }
-    })
-    const sessionResponse = await response.json()
-    return sessionResponse
-  }
-  // Set the session details in localStorage
-  async function setYotiSessionDetails(userId) {
-    const resultSession = await getYotiSession(userId);
-    localStorage.setItem("yotiSessionId", resultSession.sessionId)
-    localStorage.setItem("yotiSessionToken", resultSession.clientSessionToken)
-  }
-
   useEffect(() => {
     const userData = localStorage.getItem("userData");
     !userData && router.push("/")
@@ -32,32 +14,26 @@ function YotiProvider() {
     const userId = JSON.parse(localStorage.getItem("userId"));
     const iframe = document.getElementById('iframeId').contentWindow;
 
-    setYotiSessionDetails(userId)
 
-    // Launch the Iframe
-    const sessionId = localStorage.getItem("yotiSessionId")
-    const sessionToken = localStorage.getItem("yotiSessionToken")
-    window.addEventListener('message', event => {
-      // For some reason this doesn't work in the first load
-      // Hence the meaningless conditional check below
-      if (event.data.eventType === 'STARTED' || true) {
-        iframe.postMessage (
-          {
+    fetch('api/yoti-session', {
+      method: "GET",
+      params: {
+        user_id: userId
+      }
+    }).then(res => res.json())
+      .then(res => {
+        iframe.postMessage({
             eventType: 'INIT_SESSION',
-            sessionID: sessionId,
-            sessionToken: sessionToken,
+            sessionID: res.sessionId,
+            sessionToken: res.clientSessionToken,
           },
           origin
         );
-      }
-    });
+    }).catch(err => console.error("err", err))
 
-    window.addEventListener ('message', function (event) {
-      if (event.data.eventType === 'SUCCESS') {
-        // Act upon success
-      } else if (event.data.eventType === 'ERROR') {
-        // Act upon error
-        const errorCode = event.data.eventCode;
+    window.addEventListener('message', event => {
+      if (event.data.eventType === 'STARTED' && event.origin === origin) {
+        console.log("wohoo started!!")
       }
     });
 
@@ -71,7 +47,8 @@ function YotiProvider() {
       <Image className="logo" width="100" height="50" src="/logo_yoti.png" alt="OneID provider logo" />
 
         <iframe
-          src='https://api.yoti.com/idverify/v1/web/index.html'
+        src='https://api.yoti.com/idverify/v1/web/index.html'
+        loading="lazy"
           allow="camera"
           width="100%"
           height="750"
