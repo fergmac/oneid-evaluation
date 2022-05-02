@@ -58,6 +58,7 @@ function YotiProvider() {
             border: 'none',
           }}
           id="iframeId"
+          data-hj-allow-iframe=""
           allowFullScreen
         />
       </div>

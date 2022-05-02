@@ -25,7 +25,16 @@ function JumioProvider() {
     return (
         <div className="section">
             <Image className="logo" width="100" height="50" src="/logo_jumio.svg" alt="OneID provider logo" />
-            <iframe className={styles.jumioIframe} loading="lazy" src={jumioUrl} width="70%" height="650px" allow="camera;fullscreen;accelerometer;gyroscope;magnetometer" allowFullScreen></iframe>
+            <iframe
+                className={styles.jumioIframe}
+                loading="lazy"
+                src={jumioUrl}
+                width="70%"
+                height="650px"
+                allow="camera;fullscreen;accelerometer;gyroscope;magnetometer"
+                data-hj-allow-iframe=""
+                allowFullScreen>    
+            </iframe>
         </div>
     );
 
