@@ -1,6 +1,8 @@
 async function handler(req, res) {
   let baseUrl = new URL(process.env.API_ONE_ID_RESPONSE_URL)
-  let userId = req.params?.user_id || 'default-yoti-user'
+  const userData = JSON.parse(req.body);
+  const userId = userData?.userId || 'default-yoti-user'
+  console.log("Starting the session for user: " + userId)
 
   baseUrl.searchParams.append("user_id", userId);
 

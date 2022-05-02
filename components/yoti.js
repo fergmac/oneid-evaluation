@@ -11,17 +11,15 @@ function YotiProvider() {
     const userData = localStorage.getItem("userData");
     !userData && router.push("/")
 
-    const userId = JSON.parse(localStorage.getItem("userId"));
     const iframe = document.getElementById('iframeId').contentWindow;
 
 
     fetch('api/yoti-session', {
-      method: "GET",
-      params: {
-        user_id: userId
-      }
-    }).then(res => res.json())
+        method: 'POST',
+        body: userData
+      }).then(res => res.json())
       .then(res => {
+        console.log("Iframe postMessage initiated with sessionId", res.sessionId)
         iframe.postMessage({
             eventType: 'INIT_SESSION',
             sessionID: res.sessionId,
@@ -29,13 +27,25 @@ function YotiProvider() {
           },
           origin
         );
-    }).catch(err => console.error("err", err))
-
+      }).catch(err => console.error("Error while launching session", err))
     window.addEventListener('message', event => {
       if (event.data.eventType === 'STARTED' && event.origin === origin) {
-        console.log("wohoo started!!")
+        console.log("Event started!!")
       }
     });
+
+    window.addEventListener(
+      'message',
+      function(event) {
+        console.log('Message received', event.data);
+        if (event.data.eventType === 'SUCCESS') {
+          console.log('Success', event.data.eventType)
+        } else if (event.data.eventType === "ERROR") {
+          const errorCode = event.data.eventCode;
+          console.log("🚀 ~ file: yoti.js ~ line 45 ~ useEffect ~ errorCode", errorCode)
+        }
+      }
+    );
 
     return function cleanup() {
       window.removeEventListener('message', event)
@@ -44,7 +54,7 @@ function YotiProvider() {
 
   return (
     <div className="section">
-      <Image className="logo" width="100" height="50" src="/logo_yoti.png" alt="OneID provider logo" />
+      {/* <Image className="logo" width="100" height="50" src="/logo_yoti.png" alt="OneID provider logo" /> */}
 
         <iframe
         src='https://api.yoti.com/idverify/v1/web/index.html'
