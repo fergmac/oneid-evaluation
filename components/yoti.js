@@ -19,14 +19,16 @@ function YotiProvider() {
         body: userData
       }).then(res => res.json())
       .then(res => {
-        console.log("Iframe postMessage initiated with sessionId", res.sessionId)
-        iframe.postMessage({
-          eventType: 'INIT_SESSION',
-          sessionID: res.sessionId,
-          sessionToken: res.clientSessionToken,
-        },
-        origin
-      );
+        if (res.sessionId) {
+          console.log("Iframe postMessage initiated with sessionId", res.sessionId)
+          iframe.postMessage({
+            eventType: 'INIT_SESSION',
+            sessionID: res.sessionId,
+            sessionToken: res.clientSessionToken,
+          },
+            origin
+          );
+        }
       }).catch(err => console.error("Error while launching session", err))
       window.addEventListener('message', event => {
         if (event.data.eventType === 'STARTED' && event.origin === origin) {
