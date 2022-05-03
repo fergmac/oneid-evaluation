@@ -8,6 +8,7 @@ function VouchedProvider() {
     const callbackUrl = process.env.NEXT_PUBLIC_VOUCHED_CALLBACK_URL
 
     useLayoutEffect(() => {
+        const userData = JSON.parse(localStorage.getItem("userData"));
         var vouched = Vouched({
             appId: `${appId}`,
             // your webhook for POST verification processing
@@ -20,7 +21,9 @@ function VouchedProvider() {
                 name: 'avant',
             },
             properties: [
-                { "userId": JSON.parse(localStorage.getItem("userData"))?.userId}
+                {
+                    name: "userId", value: userData?.userId,
+                },
             ],
             onInit: ({ token, job }) => {
                 console.log("Vouched Session onInit");
@@ -35,44 +38,43 @@ function VouchedProvider() {
                     "sessionResponseTime": ""
                 }
 
-                localStorage.setItem(`${token}`, JSON.stringify(data));   
+                fetch('api/vouched-events-webhook', {
+                    method: 'POST',
+                    body: JSON.stringify(data)
+                })
+                    .then((res) => {
+                        localStorage.setItem("vouchSubmitted", true);
+                    })
+                    .catch((err) => console.log("Error: ", err));
+ 
             },
             onDone: ({ token, obj }) => {
                 console.log("Vouched Session onDone");
 
-                let updatedData = JSON.parse(localStorage.getItem(`${token}`));
-                updatedData["sessionEndTime"] = new Date().getTime();
+                const userId = JSON.parse(localStorage.getItem("userData"))?.userId
+                const data = {
+                    "userId": userId,
+                    "sessionId": token,
+                    "response": "",
+                    "provider": "vouched",
+                    "sessionStartTime":"",
+                    "sessionEndTime": new Date().getTime(),
+                    "sessionResponseTime": ""
+                }
 
-                localStorage.setItem(`${token}`, JSON.stringify(updatedData));
-
-                const customEvent = new CustomEvent("vouchedSubmit", { "detail": token});
-                window.dispatchEvent(customEvent);
+                fetch('api/vouched-events-webhook', {
+                    method: 'POST',
+                    body: JSON.stringify(data)
+                })
+                    .then((res) => {
+                        console.log("response post fetch", res)
+                        localStorage.setItem("vouchSubmitted", true);
+                    })
+                    .catch((err) => console.log("Error: ", err));
             }
         });
         vouched.mount("#vouched-root");
     });
-
-    useEffect(() => {
-        window.addEventListener('vouchedSubmit', (event) => {
-            // TODO: this event is triggering multiple times
-            if (!localStorage.getItem("vouchSubmitted")) {
-                console.log("Vouch Has Been Submitted.", event)
-
-                const data = JSON.parse(localStorage.getItem(`${event.detail}`));
-
-                console.log("Data: ", data);
-                    fetch('api/vouched-events-webhook', {
-                        method: 'POST',
-                        body: JSON.stringify(data)
-                    })
-                        .then((res) => {
-                            console.log("response post fetch", res)
-                            localStorage.setItem("vouchSubmitted", true);
-                        })
-                        .catch((err) => console.log("Error: ", err));
-            }
-        });
-    })
 
     return (
         <div className="section">
