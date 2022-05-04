@@ -16,6 +16,10 @@ function VouchedProvider() {
             // mobile handoff
             crossDevice: true,
             crossDeviceQRCode: true,
+            includeBarcode: true,
+            includeBackId: true,
+            face: 'both',
+            liveness: 'straight',
             // theme
             theme: {
                 name: 'avant',
