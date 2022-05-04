@@ -1,13 +1,11 @@
-import { useEffect, useLayoutEffect, useState } from "react";
-import Image from 'next/image';
-import styles from '../styles/vouched.module.css';
+import { useEffect } from "react";
 
 
 function VouchedProvider() {
     const appId = process.env.NEXT_PUBLIC_VOUCHED_APP_ID
     const callbackUrl = process.env.NEXT_PUBLIC_VOUCHED_CALLBACK_URL
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         const userData = JSON.parse(localStorage.getItem("userData"));
         var vouched = Vouched({
             appId: `${appId}`,
@@ -16,13 +14,33 @@ function VouchedProvider() {
             // mobile handoff
             crossDevice: true,
             crossDeviceQRCode: true,
+            crossDeviceSMS: true,
             includeBarcode: true,
             includeBackId: true,
             face: 'both',
+            showTermsAndPrivacy: false,
+            showProgressBar: false,
             liveness: 'straight',
             // theme
             theme: {
-                name: 'avant',
+                name: 'verbose',
+                baseColor: '#12826A',
+                font: 'Helvetica Neue, Helvetica, Arial, sans-serif',
+            },
+            content: {
+                overlayHeader: 'Support',
+                middleBackIdCapturedInstructions: '',
+                crossDeviceShowOff: true,
+                qrDesktopLink: '',
+                carouselCompanyText: [],
+                carouselCompanyImg: [],
+                upperSuccess: '',
+                upperFailure: '',
+                lowerSuccess: '',
+                lowerFailure: '',
+            },
+            userConfirmation: {
+                confirmImages: true,
             },
             properties: [
                 {
@@ -82,7 +100,6 @@ function VouchedProvider() {
 
     return (
         <div className="section">
-            <Image className="logo" width="100" height="50" src="/logo_vouched.svg" alt="OneID provider logo" />
             <div>
                 <div id='vouched-root'></div>
             </div>
