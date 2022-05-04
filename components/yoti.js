@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import styles from '../styles/vouched.module.css';
 import { useRouter } from 'next/router';
 
 function YotiProvider() {
