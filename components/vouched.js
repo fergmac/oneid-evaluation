@@ -1,5 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from "react";
-import Image from 'next/image';
+import { useEffect } from "react";
 import styles from '../styles/vouched.module.css';
 
 
@@ -7,7 +6,7 @@ function VouchedProvider() {
     const appId = process.env.NEXT_PUBLIC_VOUCHED_APP_ID
     const callbackUrl = process.env.NEXT_PUBLIC_VOUCHED_CALLBACK_URL
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         const userData = JSON.parse(localStorage.getItem("userData"));
         var vouched = Vouched({
             appId: `${appId}`,
@@ -26,6 +25,8 @@ function VouchedProvider() {
             // theme
             theme: {
                 name: 'verbose',
+                baseColor: '#12826A',
+                font: 'Helvetica Neue, Helvetica, Arial, sans-serif',
             },
             content: {
                 overlayHeader: 'Support',
@@ -39,11 +40,12 @@ function VouchedProvider() {
                 lowerSuccess: '',
                 lowerFailure: '',
             },
+            userConfirmation: {
+                confirmImages: true,
+            },
             properties: [
                 {
                     name: "userId", value: userData?.userId,
-                    baseColor: '#12826A',
-                    font: 'Helvetica Neue, Helvetica, Arial, sans-serif',
                 },
             ],
             onInit: ({ token, job }) => {
@@ -99,7 +101,6 @@ function VouchedProvider() {
 
     return (
         <div className="section">
-            <Image className="logo" width="100" height="50" src="/logo_vouched.svg" alt="OneID provider logo" />
             <div>
                 <div id='vouched-root'></div>
             </div>

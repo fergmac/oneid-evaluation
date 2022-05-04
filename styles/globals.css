@@ -120,8 +120,8 @@ button {
   display: flex;
 }
 
-#vouched-root.hidden {
-  visibility: hidden;
+#vouched-root {
+  margin-top: 20px;
 }
 
 @media screen and (min-width: 480px) {
