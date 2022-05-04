@@ -126,6 +126,12 @@ button {
   margin-top: 20px;
 }
 
+#veriff-button {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
 @media screen and (min-width: 480px) {
   main {
     font-size: 16px;
