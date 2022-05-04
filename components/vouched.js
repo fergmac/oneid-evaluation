@@ -16,17 +16,34 @@ function VouchedProvider() {
             // mobile handoff
             crossDevice: true,
             crossDeviceQRCode: true,
+            crossDeviceSMS: true,
             includeBarcode: true,
             includeBackId: true,
             face: 'both',
+            showTermsAndPrivacy: false,
+            showProgressBar: false,
             liveness: 'straight',
             // theme
             theme: {
-                name: 'avant',
+                name: 'verbose',
+            },
+            content: {
+                overlayHeader: 'Support',
+                middleBackIdCapturedInstructions: '',
+                crossDeviceShowOff: true,
+                qrDesktopLink: '',
+                carouselCompanyText: [],
+                carouselCompanyImg: [],
+                upperSuccess: '',
+                upperFailure: '',
+                lowerSuccess: '',
+                lowerFailure: '',
             },
             properties: [
                 {
                     name: "userId", value: userData?.userId,
+                    baseColor: '#12826A',
+                    font: 'Helvetica Neue, Helvetica, Arial, sans-serif',
                 },
             ],
             onInit: ({ token, job }) => {
