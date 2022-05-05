@@ -9,9 +9,9 @@ function VouchedProvider() {
     useEffect(() => {
         const userData = JSON.parse(localStorage.getItem("userData"));
         var vouched = Vouched({
-            appId: "https://oneid-evaluation.vercel.app/api/vouched-response-webhook",
+            appId: `${appId}`,
             // your webhook for POST verification processing
-            callbackURL: `${callbackUrl}`,
+            callbackURL: "https://oneid-evaluation.vercel.app/api/vouched-response-webhook",
             // mobile handoff
             crossDevice: true,
             crossDeviceQRCode: true,
