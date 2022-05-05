@@ -21,6 +21,7 @@ function VouchedProvider() {
             showTermsAndPrivacy: false,
             showProgressBar: false,
             liveness: 'straight',
+            maxRetriesBeforeNext: 1,
             // theme
             theme: {
                 name: 'verbose',
