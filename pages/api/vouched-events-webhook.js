@@ -11,11 +11,11 @@ async function handler(req, res) {
 
     let httpMethod;
 
-    if (providerResponse?.sessionStartTime) {
+    if (providerResponse?.action === "onInit") {
         httpMethod = "POST"
     } 
 
-    if (providerResponse?.sessionEndTime) {
+    if (providerResponse?.action === "onDone") {
         httpMethod = "PATCH"
     }
 

@@ -56,6 +56,7 @@ function VouchedProvider() {
                     "sessionId": job?.id,
                     "provider": "vouched",
                     "timeStamp": new Date().toISOString(),
+                    "action": "onInit"
                 }
 
                 fetch('api/vouched-events-webhook', {
@@ -77,6 +78,7 @@ function VouchedProvider() {
                     "sessionId": job?.id,
                     "provider": "vouched",
                     "timeStamp": new Date().toISOString(),
+                    "action": "onDone"
                 }
 
                 fetch('api/vouched-events-webhook', {
