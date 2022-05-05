@@ -54,11 +54,8 @@ function VouchedProvider() {
                 const data = {
                     "userId": userId,
                     "sessionId": job?.id,
-                    "response": "",
                     "provider": "vouched",
-                    "sessionStartTime": new Date().toISOString(),
-                    "sessionEndTime": "",
-                    "sessionResponseTime": ""
+                    "timeStamp": new Date().toISOString(),
                 }
 
                 fetch('api/vouched-events-webhook', {
@@ -78,11 +75,8 @@ function VouchedProvider() {
                 const data = {
                     "userId": userId,
                     "sessionId": job?.id,
-                    "response": "",
                     "provider": "vouched",
-                    "sessionStartTime":"",
-                    "sessionEndTime": new Date().toISOString(),
-                    "sessionResponseTime": ""
+                    "timeStamp": new Date().toISOString(),
                 }
 
                 fetch('api/vouched-events-webhook', {
@@ -90,7 +84,7 @@ function VouchedProvider() {
                     body: JSON.stringify(data)
                 })
                     .then((res) => {
-                        console.log("response post fetch", res)
+                        // console.log("response post fetch", res)
                         // localStorage.setItem("vouchSubmitted", true);
                     })
                     .catch((err) => console.log("Error: ", err));
