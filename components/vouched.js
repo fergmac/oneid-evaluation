@@ -55,7 +55,7 @@ function VouchedProvider() {
                     "sessionId": token,
                     "response": "",
                     "provider": "vouched",
-                    "sessionStartTime": new Date().getTime(),
+                    "sessionStartTime": new Date().toISOString(),
                     "sessionEndTime": "",
                     "sessionResponseTime": ""
                 }
@@ -80,7 +80,7 @@ function VouchedProvider() {
                     "response": "",
                     "provider": "vouched",
                     "sessionStartTime":"",
-                    "sessionEndTime": new Date().getTime(),
+                    "sessionEndTime": new Date().toISOString(),
                     "sessionResponseTime": ""
                 }
 
