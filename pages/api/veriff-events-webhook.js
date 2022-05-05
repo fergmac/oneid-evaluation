@@ -13,7 +13,7 @@ async function handler(req, res) {
             "session_id": providerResponse.id,
             "response": "",
             "provider": "veriff",
-            "session_start_time": new Date().getTime(),
+            "session_start_time": new Date().toISOString(),
             "session_end_time": "",
             "session_response_time": ""
         }
@@ -27,7 +27,7 @@ async function handler(req, res) {
             "response": "",
             "provider": "veriff",
             "session_start_time": "",
-            "session_end_time": new Date().getTime(),
+            "session_end_time": new Date().toISOString(),
             "session_response_time": ""
         }
         httpMethod = "PATCH";
