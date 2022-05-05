@@ -2,23 +2,33 @@ async function handler(req, res) {
     const providerResponse = JSON.parse(req.body);
     const url = process.env.API_ONE_ID_RESPONSE_URL
     const apiKey = process.env.API_KEY
-    const data = {
-        "user_id": providerResponse?.userId,
-        "session_id": providerResponse?.sessionId,
-        "response": "",
-        "provider": "vouched",
-        "session_start_time": providerResponse?.sessionStartTime,
-        "session_end_time": providerResponse?.sessionEndTime,
-        "session_response_time": providerResponse?.sessionResponseTime
-    }
+    let data;
     let httpMethod;
 
     if (providerResponse?.sessionStartTime) {
         httpMethod = "POST"
+        data = {
+            "user_id": providerResponse?.userId,
+            "session_id": providerResponse?.sessionId,
+            "response": "",
+            "provider": "vouched",
+            "session_start_time": providerResponse?.sessionStartTime,
+            "session_end_time": "",
+            "session_response_time": providerResponse?.sessionResponseTime
+        }
     } 
 
     if (providerResponse?.sessionEndTime) {
         httpMethod = "PATCH"
+        data = {
+            "user_id": providerResponse?.userId,
+            "session_id": providerResponse?.sessionId,
+            "response": "",
+            "provider": "vouched",
+            "session_start_time": "",
+            "session_end_time": providerResponse?.sessionEndTime,
+            "session_response_time": providerResponse?.sessionResponseTime
+        }
     }
 
     console.log("Vouched Events Webhook - Data: ", data)
