@@ -8,8 +8,6 @@ async function handler(req, res) {
         "session_id": providerResponse?.jumioIdScanReference,
         "response": providerResponse,
         "provider": "jumio",
-        "session_start_time": "",
-        "session_end_time": "",
         "session_response_time": providerResponse?.callbackDate
     }
 

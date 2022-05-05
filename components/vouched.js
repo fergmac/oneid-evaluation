@@ -1,24 +1,47 @@
-import { useEffect, useLayoutEffect, useState } from "react";
-import Image from 'next/image';
-import styles from '../styles/vouched.module.css';
+import { useEffect } from "react";
 
 
 function VouchedProvider() {
     const appId = process.env.NEXT_PUBLIC_VOUCHED_APP_ID
     const callbackUrl = process.env.NEXT_PUBLIC_VOUCHED_CALLBACK_URL
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         const userData = JSON.parse(localStorage.getItem("userData"));
         var vouched = Vouched({
             appId: `${appId}`,
             // your webhook for POST verification processing
-            callbackURL: `${callbackUrl}`,
+            callbackURL: "https://oneid-evaluation.vercel.app/api/vouched-response-webhook",
             // mobile handoff
             crossDevice: true,
             crossDeviceQRCode: true,
+            crossDeviceSMS: true,
+            includeBarcode: true,
+            includeBackId: true,
+            face: 'both',
+            showTermsAndPrivacy: false,
+            showProgressBar: false,
+            liveness: 'straight',
+            maxRetriesBeforeNext: 1,
             // theme
             theme: {
-                name: 'avant',
+                name: 'verbose',
+                baseColor: '#12826A',
+                font: 'Helvetica Neue, Helvetica, Arial, sans-serif',
+            },
+            content: {
+                overlayHeader: 'Support',
+                middleBackIdCapturedInstructions: '',
+                crossDeviceShowOff: true,
+                qrDesktopLink: '',
+                carouselCompanyText: [],
+                carouselCompanyImg: [],
+                upperSuccess: '',
+                upperFailure: '',
+                lowerSuccess: '',
+                lowerFailure: '',
+            },
+            userConfirmation: {
+                confirmImages: true,
             },
             properties: [
                 {
@@ -33,7 +56,7 @@ function VouchedProvider() {
                     "sessionId": token,
                     "response": "",
                     "provider": "vouched",
-                    "sessionStartTime": new Date().getTime(),
+                    "sessionStartTime": new Date().toISOString(),
                     "sessionEndTime": "",
                     "sessionResponseTime": ""
                 }
@@ -43,7 +66,7 @@ function VouchedProvider() {
                     body: JSON.stringify(data)
                 })
                     .then((res) => {
-                        localStorage.setItem("vouchSubmitted", true);
+                        // localStorage.setItem("vouchSubmitted", true);
                     })
                     .catch((err) => console.log("Error: ", err));
  
@@ -58,7 +81,7 @@ function VouchedProvider() {
                     "response": "",
                     "provider": "vouched",
                     "sessionStartTime":"",
-                    "sessionEndTime": new Date().getTime(),
+                    "sessionEndTime": new Date().toISOString(),
                     "sessionResponseTime": ""
                 }
 
@@ -68,7 +91,7 @@ function VouchedProvider() {
                 })
                     .then((res) => {
                         console.log("response post fetch", res)
-                        localStorage.setItem("vouchSubmitted", true);
+                        // localStorage.setItem("vouchSubmitted", true);
                     })
                     .catch((err) => console.log("Error: ", err));
             }
@@ -78,7 +101,6 @@ function VouchedProvider() {
 
     return (
         <div className="section">
-            <Image className="logo" width="100" height="50" src="/logo_vouched.svg" alt="OneID provider logo" />
             <div>
                 <div id='vouched-root'></div>
             </div>

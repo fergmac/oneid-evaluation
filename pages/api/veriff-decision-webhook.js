@@ -7,9 +7,7 @@ async function handler(req, res) {
         "session_id": providerResponse?.verification?.id,
         "response": providerResponse,
         "provider": "veriff",
-        "session_start_time": "",
-        "session_end_time": "",
-        "session_response_time": new Date().getTime()
+        "session_response_time": new Date().toISOString()
     }
 
     try {

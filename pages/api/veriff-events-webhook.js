@@ -11,11 +11,8 @@ async function handler(req, res) {
         data = {
             "user_id": providerResponse.vendorData,
             "session_id": providerResponse.id,
-            "response": "",
             "provider": "veriff",
-            "session_start_time": new Date().getTime(),
-            "session_end_time": "",
-            "session_response_time": ""
+            "session_start_time": new Date().toISOString(),
         }
         httpMethod = "POST";
     }
@@ -24,11 +21,8 @@ async function handler(req, res) {
         data = {
             "user_id": providerResponse?.vendorData,
             "session_id": providerResponse?.id,
-            "response": "",
             "provider": "veriff",
-            "session_start_time": "",
-            "session_end_time": new Date().getTime(),
-            "session_response_time": ""
+            "session_end_time": new Date().toISOString(),
         }
         httpMethod = "PATCH";
     }
