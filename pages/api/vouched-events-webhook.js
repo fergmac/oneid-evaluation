@@ -11,10 +11,20 @@ async function handler(req, res) {
         "session_end_time": providerResponse?.sessionEndTime,
         "session_response_time": providerResponse?.sessionResponseTime
     }
+    let httpMethod;
+
+    if (providerResponse.sessionStartTime) {
+        httpMethod = "POST"
+    } 
+
+    if (providerResponse.sessionEndTime) {
+        httpMethod = "PATCH"
+    }
+
 
     try {
         const response = await fetch(`${url}`, {
-            method: "POST",
+            method: httpMethod,
             headers: {
                 "Content-Type": "application/json",
                 "x-api-key": `${apiKey}`,
