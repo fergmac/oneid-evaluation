@@ -21,6 +21,8 @@ async function handler(req, res) {
         httpMethod = "PATCH"
     }
 
+    console.log("Vouched Events Webhook - Data: ", data)
+    console.log("Vouched Events Webhook - httpMethod: ", httpMethod)
 
     try {
         const response = await fetch(`${url}`, {
