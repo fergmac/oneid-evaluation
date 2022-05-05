@@ -3,7 +3,7 @@ async function handler(req, res) {
     const url = process.env.API_ONE_ID_RESPONSE_URL
     const apiKey = process.env.API_KEY
     const data = {
-        "user_id": providerResponse?.properties[0]?.userId,
+        "user_id": providerResponse?.request?.properties[0]?.name,
         "session_id": providerResponse?.id,
         "response": providerResponse,
         "provider": "vouched",
@@ -11,7 +11,7 @@ async function handler(req, res) {
         "session_end_time": "",
         "session_response_time": new Date().toISOString(),
     }
-    
+    console.log("Vouched Response Webhook Data: ", data);
     try {
         const response = await fetch(`${url}`, {
             method: "PATCH",
