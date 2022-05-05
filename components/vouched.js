@@ -48,12 +48,12 @@ function VouchedProvider() {
                     name: "userId", value: userData?.userId,
                 },
             ],
-            onInit: ({ token, job }) => {
+            onInit: ({ job }) => {
                 console.log("Vouched Session onInit");
                 const userId = JSON.parse(localStorage.getItem("userData"))?.userId
                 const data = {
                     "userId": userId,
-                    "sessionId": token,
+                    "sessionId": job?.id,
                     "response": "",
                     "provider": "vouched",
                     "sessionStartTime": new Date().toISOString(),
@@ -71,13 +71,13 @@ function VouchedProvider() {
                     .catch((err) => console.log("Error: ", err));
  
             },
-            onDone: ({ token, obj }) => {
+            onDone: ({ job }) => {
                 console.log("Vouched Session onDone");
 
                 const userId = JSON.parse(localStorage.getItem("userData"))?.userId
                 const data = {
                     "userId": userId,
-                    "sessionId": token,
+                    "sessionId": job?.id,
                     "response": "",
                     "provider": "vouched",
                     "sessionStartTime":"",
