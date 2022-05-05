@@ -1,4 +1,5 @@
 async function handler(req, res) {
+    console.log("Vouched Response Webhook");
     const providerResponse = req?.body;
     const url = process.env.API_ONE_ID_RESPONSE_URL
     const apiKey = process.env.API_KEY
