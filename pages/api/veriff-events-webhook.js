@@ -9,8 +9,8 @@ async function handler(req, res) {
 
     if (providerResponse.action === 'started') {
         data = {
-            "user_id": providerResponse.vendorData,
-            "session_id": providerResponse.id,
+            "user_id": providerResponse?.vendorData,
+            "session_id": providerResponse?.id,
             "provider": "veriff",
             "session_start_time": new Date().toISOString(),
         }

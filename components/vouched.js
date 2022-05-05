@@ -51,6 +51,7 @@ function VouchedProvider() {
             onInit: ({ job }) => {
                 console.log("Vouched Session onInit");
                 const userId = JSON.parse(localStorage.getItem("userData"))?.userId
+                localStorage.setItem("vouchedSessionId", job?.id);
                 const data = {
                     "userId": userId,
                     "sessionId": job?.id,
@@ -69,13 +70,14 @@ function VouchedProvider() {
                     .catch((err) => console.log("Error: ", err));
  
             },
-            onDone: ({ job }) => {
-                console.log("Vouched Session onDone");
-
+            onDone: ({ onDoneData }) => {
+                console.log("Vouched Session onDone" );
+                const sessionId = localStorage.getItem("vouchedSessionId")
+                localStorage.removeItem("vouchedSessionId");
                 const userId = JSON.parse(localStorage.getItem("userData"))?.userId
                 const data = {
                     "userId": userId,
-                    "sessionId": job?.id,
+                    "sessionId": sessionId,
                     "provider": "vouched",
                     "timeStamp": new Date().toISOString(),
                     "action": "onDone"
