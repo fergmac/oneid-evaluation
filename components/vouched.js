@@ -9,7 +9,7 @@ function VouchedProvider() {
     useEffect(() => {
         const userData = JSON.parse(localStorage.getItem("userData"));
         var vouched = Vouched({
-            appId: `${appId}`,
+            appId: `${VERCEL_URL}/api/vouched-response-webhook`,
             // your webhook for POST verification processing
             callbackURL: `${callbackUrl}`,
             // mobile handoff
