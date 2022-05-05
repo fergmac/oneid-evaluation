@@ -2,7 +2,7 @@ async function handler(req, res) {
     const providerResponse = req?.body;
     const url = process.env.API_ONE_ID_RESPONSE_URL
     const apiKey = process.env.API_KEY
-    const userId = JSON.parse(providerResponse?.request?.properties)[0]?.name
+    const userId = providerResponse?.request?.properties[0]?.name
     const data = {
         "user_id": userId,
         "session_id": providerResponse?.id,
