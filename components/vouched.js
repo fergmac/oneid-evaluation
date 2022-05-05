@@ -4,7 +4,6 @@ import { useEffect } from "react";
 function VouchedProvider() {
     const appId = process.env.NEXT_PUBLIC_VOUCHED_APP_ID
     const callbackUrl = process.env.NEXT_PUBLIC_VOUCHED_CALLBACK_URL
-    // https://oneid-evaluation.vercel.app/api/vouched-response-webhook
 
     useEffect(() => {
         const userData = JSON.parse(localStorage.getItem("userData"));
