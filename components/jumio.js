@@ -24,7 +24,6 @@ function JumioProvider() {
     
     return (
         <div className="section">
-            <Image className="logo" width="100" height="50" src="/logo_jumio.svg" alt="OneID provider logo" />
             <iframe
                 className={styles.jumioIframe}
                 loading="lazy"
