@@ -7,8 +7,6 @@ async function handler(req, res) {
         "session_id": providerResponse?.id,
         "response": providerResponse,
         "provider": "vouched",
-        "session_start_time": "",
-        "session_end_time": "",
         "session_response_time": new Date().toISOString(),
     }
     console.log("Vouched Response Webhook Data: ", data);

@@ -10,11 +10,8 @@ async function handler(req, res) {
         data = {
             "user_id": providerResponse?.userId,
             "session_id": providerResponse?.sessionId,
-            "response": "",
             "provider": "vouched",
             "session_start_time": providerResponse?.sessionStartTime,
-            "session_end_time": "",
-            "session_response_time": providerResponse?.sessionResponseTime
         }
     } 
 
@@ -23,11 +20,8 @@ async function handler(req, res) {
         data = {
             "user_id": providerResponse?.userId,
             "session_id": providerResponse?.sessionId,
-            "response": "",
             "provider": "vouched",
-            "session_start_time": "",
             "session_end_time": providerResponse?.sessionEndTime,
-            "session_response_time": providerResponse?.sessionResponseTime
         }
     }
 
