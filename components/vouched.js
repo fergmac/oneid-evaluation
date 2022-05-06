@@ -90,11 +90,13 @@ function VouchedProvider() {
                     })
                     .catch((err) => console.log("Error: ", err));
                 
-                if (job.result.success) {
-                    window.location.replace("https://oneid-evaluation.vercel.app/success/");
-                } else{
-                    window.location.replace("https://oneid-evaluation.vercel.app/failed/");
-                }
+                // TODO: dont have access to the job object in onDone callback
+                window.location.replace("https://oneid-evaluation.vercel.app/success/");
+                // if (job.result.success) {
+                //     window.location.replace("https://oneid-evaluation.vercel.app/success/");
+                // } else{
+                //     window.location.replace("https://oneid-evaluation.vercel.app/failed/");
+                // }
             }
         });
         vouched.mount("#vouched-root");
