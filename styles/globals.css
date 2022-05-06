@@ -132,6 +132,29 @@ button {
   justify-content: center;
 }
 
+.success-page, .failed-page {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+}
+
+.success-page > a, .failed-page > a {
+  border-radius: 10px;
+  background-color: #12826A;
+  padding: 20px;
+  color: white;
+  text-decoration: none;
+  margin-top: 40px;
+}
+
+.success-page > a:hover, .failed-page > a:hover {
+  border-radius: 10px;
+  background-color: #17B893;
+  cursor: pointer;
+}
+
 @media screen and (min-width: 480px) {
   main {
     font-size: 16px;
