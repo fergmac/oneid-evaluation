@@ -65,9 +65,8 @@ function VouchedProvider() {
                         // localStorage.setItem("vouchSubmitted", true);
                     })
                     .catch((err) => console.log("Error: ", err));
- 
             },
-            onDone: ({ token, job }) => {
+            onDone: (job) => {
                 console.log("Vouched onDone Job: ", job);
                 console.log("Vouched Session onDone" );
                 const sessionId = localStorage.getItem("vouchedSessionId")
