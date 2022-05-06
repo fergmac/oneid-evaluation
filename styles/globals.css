@@ -147,6 +147,8 @@ button {
   color: white;
   text-decoration: none;
   margin-top: 40px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .success-page > a:hover, .failed-page > a:hover {
