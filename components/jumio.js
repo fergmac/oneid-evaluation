@@ -21,6 +21,32 @@ function JumioProvider() {
             })
 
     }, [])
+
+    useEffect(() => {
+        const origin = "https://certn-test.netverify.com"
+        const successUrl = "https://oneid-evaluation.vercel.app/success/"
+        const errorUrl = "https://oneid-evaluation.vercel.app/failed/"
+        const verificationStatus = {
+            SUCCESS: "success",
+            ERROR: "error"
+        }
+        
+        window.addEventListener("message", (event) => {
+            let data;
+            
+            if (event?.origin !== origin) {
+                return;
+            }
+    
+            data = JSON.parse(event?.data);
+            if (data?.payload.value === verificationStatus?.SUCCESS) {
+                window.parent.location.replace(successUrl);
+            }
+            if (data?.payload.value === verificationStatus?.ERROR) {
+                window.parent.location.replace(errorUrl);
+            }
+        })
+    }, []);
     
     return (
         <div className="section">
