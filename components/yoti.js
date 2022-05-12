@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef } from 'react';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 function YotiProvider() {
@@ -106,8 +105,6 @@ function YotiProvider() {
 
   return (
     <div className="section">
-      <Image className="logo" width="100" height="50" src="/logo_yoti.svg" alt="OneID provider logo" />
-
       {showYotiIframe ?
         (
           <iframe
@@ -118,7 +115,7 @@ function YotiProvider() {
             width="100%"
             height="750"
             style={{
-              height: '805px',
+              height: '550px',
               width: '100%',
               border: 'none',
             }}

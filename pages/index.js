@@ -1,7 +1,7 @@
-import Script from 'next/script'
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import UserForm from '../components/userForm';
+import Header from '../components/header'
 
 
 function HomePage() {
@@ -15,6 +15,7 @@ function HomePage() {
 
     return (
         <>
+            <Header />
             <UserForm />
         </>
     );

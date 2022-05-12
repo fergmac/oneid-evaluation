@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image';
 import { hotjar } from 'react-hotjar';
 import styles from '../styles/idVerification.module.css';
+import Header from '../components/header'
 
 function OneIDEvaluation() {
     const router = useRouter();
@@ -36,28 +37,32 @@ function OneIDEvaluation() {
     });
 
     return (
-        <div className={styles.providerLinks}>
-            <Link href="/jumio-verification">
-                <a className={styles.provider}>
-                    <Image className="logo" width="100" height="50" src="/logo_jumio.svg" alt="OneID provider logo" />
-                </a>
-            </Link>
-            <Link href="/vouched-verification">
-                <a className={styles.provider}>
-                    <Image className="logo" width="100" height="50" src="/logo_vouched.svg" alt="OneID provider logo" />
-                </a>
-            </Link>
-            <Link href="/veriff-verification">
-                <a className={styles.provider}>
-                    <Image className="logo" width="100" height="50" src="/logo_veriff.svg" alt="OneID provider logo" />
-                </a>
-            </Link>
-            <Link href="/yoti-verification">
-                <a className={styles.provider}>
-                    <Image className="logo" width="100" height="50" src="/logo_yoti.png" alt="OneID provider logo" />
-                </a>
-            </Link>
-        </div>);
+        <>
+            <Header />
+            <div className={styles.providerLinks}>
+                <Link href="/jumio-verification">
+                    <a className={styles.provider}>
+                        <Image className="logo" width="100" height="50" src="/logo_jumio.svg" alt="OneID provider logo" />
+                    </a>
+                </Link>
+                <Link href="/vouched-verification">
+                    <a className={styles.provider}>
+                        <Image className="logo" width="100" height="50" src="/logo_vouched.svg" alt="OneID provider logo" />
+                    </a>
+                </Link>
+                <Link href="/veriff-verification">
+                    <a className={styles.provider}>
+                        <Image className="logo" width="100" height="50" src="/logo_veriff.svg" alt="OneID provider logo" />
+                    </a>
+                </Link>
+                <Link href="/yoti-verification">
+                    <a className={styles.provider}>
+                        <Image className="logo" width="100" height="50" src="/logo_yoti.png" alt="OneID provider logo" />
+                    </a>
+                </Link>
+            </div>
+        </>
+    );
 }
 
 export default OneIDEvaluation;
