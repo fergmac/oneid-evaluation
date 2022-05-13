@@ -10,7 +10,17 @@ function VeriffProvider() {
             apiKey: `${verifyApiKey}`,
             parentId: 'veriff-button',
             onSession: function (err, response) {
-                window.veriffSDK.createVeriffFrame({ url: response.verification.url });
+                window.veriffSDK.createVeriffFrame({
+                    url: response.verification.url,
+                    onEvent: function (msg) {
+                        console.log("OneEvent Message: ", msg);
+                        switch(msg) {
+                            case "FINISHED":
+                                window.location.replace("https://oneid-evaluation.vercel.app/success/");
+                                break;
+                        }    
+                    }
+                });
             }
         });
         veriff.setParams({
