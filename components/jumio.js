@@ -37,12 +37,15 @@ function JumioProvider() {
             if (event?.origin !== origin) {
                 return;
             }
-    
+            console.log("Jumio Event: ", event);
             data = JSON.parse(event?.data);
+            console.log("Jumio Event Data: ", data);
             if (data?.payload.value === verificationStatus?.SUCCESS) {
+                console.log("Jumio Success.");
                 window.parent.location.replace(successUrl);
             }
             if (data?.payload.value === verificationStatus?.ERROR) {
+                console.log("Jumio Error.");
                 window.parent.location.replace(errorUrl);
             }
         })
