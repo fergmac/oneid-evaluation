@@ -2,7 +2,6 @@ async function handler(req, res) {
   let baseUrl = new URL(process.env.API_ONE_ID_RESPONSE_URL)
   const userData = JSON.parse(req.body);
   const userId = userData?.userId || 'default-yoti-user'
-  console.log("Starting the session for user: " + userId)
 
   baseUrl.searchParams.append("user_id", userId);
 
@@ -15,7 +14,6 @@ async function handler(req, res) {
           },
       });
       const sessionDetails = await response.json();
-      console.log(sessionDetails)
 
     res.status(response?.status).json({
       msg: "Yoti Session Response Webhook Success",
@@ -24,7 +22,7 @@ async function handler(req, res) {
       status: response?.status
     });
   } catch (error) {
-      console.log(error)
+      console.error(error)
     res.status(response?.status).json(
       {
         msg: error

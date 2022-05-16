@@ -21,7 +21,7 @@ async function handler(req, res) {
         });
         res.status(response?.status).json({msg: "Decision Webhook Success"});
     } catch (error) {
-        console.log("Error: ", error?.status)
+        console.error("Error: ", error?.status)
         res.status(error?.status).json({ msg: "Decision Webhook Error" });
     }
 }

@@ -14,7 +14,6 @@ function YotiProvider() {
 
   const getSessionIdFromIframeUrl = (url) => {
     if (!url) {
-      console.log('Empty Iframe URL passed to getSessionIdFromIframe')
       return null
     };
     let params = new URLSearchParams(url.src.split('?')[1])
@@ -37,15 +36,10 @@ function YotiProvider() {
     .then((res) => {
       localStorage.setItem("yotiSubmitted", true);
     })
-    .catch((err) => console.log("Yoti Status API Submission Error: ", err));
+    .catch((err) => console.error("Yoti Status API Submission Error: ", err));
   }
 
   useEffect(() => {
-    // if (sessionId) {
-    // console.log("🚀 RETURNED useEffect ~ sessionId.current", sessionId.current)
-    // return
-    // }
-
     const userData = localStorage.getItem("userData");
     !userData && router.push("/")
 
@@ -55,11 +49,9 @@ function YotiProvider() {
       }).then(res => res.json())
       .then(res => {
         if (res.sessionId && res.clientSessionToken) {
-          console.log("Iframe postMessage initiated with sessionId", res.sessionId)
           _setYotiIframeUrl(res.sessionId, res.clientSessionToken)
           setShowYotiIframe(true)
           sessionId.current = res.sessionId
-          console.log("🚀 ~ file: yoti.js ~ line 45 ~ useEffect ~ sessionId", sessionId,  getSessionIdFromIframeUrl(yotiSessionIframe))
           const userId = JSON.parse(userData)?.userId
           const data = {
             "userId": userId,
@@ -79,7 +71,6 @@ function YotiProvider() {
       'message',
       function (event) {
         if (event.data.eventType === 'SUCCESS') {
-          console.log('Yoti Success', event.data)
           const userId = JSON.parse(localStorage.getItem("userData"))?.userId
           const data = {
             "userId": userId,
@@ -92,7 +83,6 @@ function YotiProvider() {
           updateYotiStatusAPIGateway(data)
           window.parent.location.replace("https://oneid-evaluation.vercel.app/success/");
         } else if (event.data.eventType === "ERROR") {
-          console.log("Yoti error", event)
           window.parent.location.replace("https://oneid-evaluation.vercel.app/failed/");
         }
       }

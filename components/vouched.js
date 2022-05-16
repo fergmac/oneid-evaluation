@@ -82,7 +82,7 @@ function VouchedProvider() {
                 })
                     .then((res) => res.json())
                     .then((data) => console.log("Success: ", data))
-                    .catch((err) => console.log("Error: ", err));
+                    .catch((err) => console.error("Error: ", err));
                 
 
                 if (job.result.success) {

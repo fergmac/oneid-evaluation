@@ -17,10 +17,6 @@ async function handler(req, res) {
         }),
     }
 
-    console.table(data)
-    console.log(JSON.stringify(data))
-    console.log("Dynamodb to be updated for session: ", data.session_id)
-
     try {
         const response = await fetch(`${url}`, {
             method: "PATCH",
