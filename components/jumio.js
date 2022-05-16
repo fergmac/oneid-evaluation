@@ -23,31 +23,38 @@ function JumioProvider() {
     }, [])
 
     useEffect(() => {
-        const origin = "https://certn-test.netverify.com"
+        // below origin updated during testing from "https://certn-test.netverify.com"
+        const origin = "https://certn-test.web.amer-1.jumio.ai"
         const successUrl = "https://oneid-evaluation.vercel.app/success/"
         const errorUrl = "https://oneid-evaluation.vercel.app/failed/"
         const verificationStatus = {
             SUCCESS: "success",
             ERROR: "error"
         }
-        
+
         window.addEventListener("message", (event) => {
             let data;
-            
-            if (event?.origin !== origin) {
+
+            if (!event?.origin.includes("https://certn-test")) {
                 return;
             }
-            console.log("Jumio Event: ", event);
-            data = JSON.parse(event?.data);
-            console.log("Jumio Event Data: ", data);
-            if (data?.payload.value === verificationStatus?.SUCCESS) {
-                console.log("Jumio Success.");
-                window.parent.location.replace(successUrl);
+            
+            try {
+                data = event?.data
+                data = JSON.parse(data);
+                console.log("Jumio Event Data: ", data);
+                if (data?.payload.value === verificationStatus?.SUCCESS) {
+                    console.log("Jumio Success.");
+                    window.parent.location.replace(successUrl);
+                }
+                if (data?.payload.value === verificationStatus?.ERROR) {
+                    console.log("Jumio Error.");
+                    window.parent.location.replace(errorUrl);
+                }
+            } catch (error) {
+                console.error("Error Parsing Jumio Event JSON: ", error);
             }
-            if (data?.payload.value === verificationStatus?.ERROR) {
-                console.log("Jumio Error.");
-                window.parent.location.replace(errorUrl);
-            }
+
         })
     }, []);
     
