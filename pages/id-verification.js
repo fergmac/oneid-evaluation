@@ -31,6 +31,7 @@ function OneIDEvaluation() {
                 .then((res) => res.json())
                 .then((data) => {
                     localStorage.setItem("userDataSubmitted", JSON.stringify(true));
+                    console.log("Success: ", data);
                 })
                 .catch((err) => console.error("Error: ", err));
         }
