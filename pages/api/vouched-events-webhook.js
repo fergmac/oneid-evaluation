@@ -26,9 +26,6 @@ async function handler(req, res) {
         }
     }
 
-    console.log("Vouched Events Webhook - Data: ", data)
-    console.log("Vouched Events Webhook - httpMethod: ", httpMethod)
-
     try {
         const response = await fetch(`${url}`, {
             method: httpMethod,
@@ -40,7 +37,7 @@ async function handler(req, res) {
         });
         res.status(response?.status).json({msg: "Event Webhook Success"});
     } catch (error) {
-        res.status(error?.status).json({msn: "Event Webhook Error"})
+        res.status(error?.status).json({ msg: "Event Webhook Error" });
     }
 }
 

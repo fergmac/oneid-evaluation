@@ -46,7 +46,6 @@ function VouchedProvider() {
                 },
             ],
             onInit: ({ job }) => {
-                console.log("Vouched Session onInit");
                 const userId = JSON.parse(localStorage.getItem("userData"))?.userId
                 localStorage.setItem("vouchedSessionId", job?.id);
                 const data = {
@@ -61,14 +60,11 @@ function VouchedProvider() {
                     method: 'POST',
                     body: JSON.stringify(data)
                 })
-                    .then((res) => {
-                        // localStorage.setItem("vouchSubmitted", true);
-                    })
-                    .catch((err) => console.log("Error: ", err));
+                    .then((res) => res.json())
+                    .then((data) => console.log("Success: ", data))
+                    .catch((err) => console.error("Error: ", err));
             },
             onDone: (job) => {
-                console.log("Vouched onDone Job: ", job);
-                console.log("Vouched Session onDone" );
                 const sessionId = localStorage.getItem("vouchedSessionId")
                 localStorage.removeItem("vouchedSessionId");
                 const userId = JSON.parse(localStorage.getItem("userData"))?.userId
@@ -84,11 +80,9 @@ function VouchedProvider() {
                     method: 'POST',
                     body: JSON.stringify(data)
                 })
-                    .then((res) => {
-                        // console.log("response post fetch", res)
-                        // localStorage.setItem("vouchSubmitted", true);
-                    })
-                    .catch((err) => console.log("Error: ", err));
+                    .then((res) => res.json())
+                    .then((data) => console.log("Success: ", data))
+                    .catch((err) => console.error("Error: ", err));
                 
 
                 if (job.result.success) {

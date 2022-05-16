@@ -1,5 +1,4 @@
 async function handler(req, res) {
-    console.log("Vouched Response Webhook");
     const providerResponse = req?.body;
     const url = process.env.API_ONE_ID_RESPONSE_URL
     const apiKey = process.env.API_KEY
@@ -11,7 +10,7 @@ async function handler(req, res) {
         "provider": "vouched",
         "session_response_time": new Date().toISOString(),
     }
-    console.log("Vouched Response Webhook Data: ", data);
+
     try {
         const response = await fetch(`${url}`, {
             method: "PATCH",
@@ -21,9 +20,9 @@ async function handler(req, res) {
             },
             body: JSON.stringify(data)
         });
-        res.status(200).json({ msg: "Decision Webhook Success" });
+        res.status(response?.status).json({ msg: "Decision Webhook Success" });
     } catch (error) {
-        res.status(400).json({ msn: "Decision Webhook Error" });
+        res.status(error?.status).json({ msg: "Decision Webhook Error" });
     }
 }
 

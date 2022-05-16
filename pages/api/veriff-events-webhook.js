@@ -36,9 +36,9 @@ async function handler(req, res) {
             },
             body: JSON.stringify(data)
         });
-        res.status(200).json({msg: "Event Webhook Success"});
+        res.status(response?.status).json({msg: "Event Webhook Success"});
     } catch (error) {
-        res.status(400).json({msn: "Event Webhook Error"})
+        res.status(error?.status).json({ msg: "Event Webhook Error" });
     }
 }
 

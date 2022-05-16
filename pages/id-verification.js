@@ -28,10 +28,12 @@ function OneIDEvaluation() {
                 method: 'POST',
                 body: userData
             })
-                .then((res) => {
-                    console.log("response post fetch", res)
+                .then((res) => res.json())
+                .then((data) => {
                     localStorage.setItem("userDataSubmitted", JSON.stringify(true));
-                }).catch((err) => console.log("Error: ", err));
+                    console.log("Success: ", data);
+                })
+                .catch((err) => console.error("Error: ", err));
         }
 
     });

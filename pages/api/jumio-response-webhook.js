@@ -2,7 +2,6 @@ async function handler(req, res) {
     const providerResponse = req.body
     const url = process.env.API_ONE_ID_RESPONSE_URL
     const apiKey = process.env.API_KEY
-    console.log("Provider Response: ", providerResponse);
     const data = {
         "user_id": providerResponse?.customerId,
         "session_id": providerResponse?.jumioIdScanReference,
