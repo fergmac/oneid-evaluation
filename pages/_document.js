@@ -1,5 +1,5 @@
 import Document, { Head, Html, Main, NextScript } from 'next/document';
-import OneIDScripts from './one-id-scripts';
+import OneIDScripts from '../components/oneIDScripts';
 class MyDocument extends Document {
     render() {
         return <Html lang="en" >
