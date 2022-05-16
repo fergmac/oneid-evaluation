@@ -124,7 +124,7 @@ function YotiProvider() {
             allowFullScreen
           />)
         :
-        (<label htmlFor="yoti-iframe">Loading...</label>)}
+        (<label style={{ "textAlign": "center" }} htmlFor="yoti-iframe">Loading...</label>)}
     </div>
   );
 }
